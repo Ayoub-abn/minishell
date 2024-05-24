@@ -1,29 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 21:58:05 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/05/24 23:49:55 by aabdenou         ###   ########.fr       */
+/*   Created: 2023/11/20 11:21:51 by aabdenou          #+#    #+#             */
+/*   Updated: 2024/05/25 00:18:07 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int ac, char **av, char **env)
-{
-	(void)env;
-	t_tool	tools;
-	// t_list *head = NULL;
-	// ft_memset(&tools,0,sizeof(t_tools));
 
-	if (ac != 1 || av[1])
+
+
+void	ft_lstadd_back(t_lexer **lst, t_lexer *new)
+{
+	t_lexer	*tmp;
+
+	tmp = *lst;
+	
+	if (lst == NULL || new == NULL)
 	{
-		printf("This program does not accept arguments\n");
-		exit(0);
+		return ;
 	}
-	// tools.env = array_cpy(env);
-	loop_minishell(&tools);
+	if (*lst == NULL)
+	{
+		*lst = new;
+		return ;
+	}
+	while (tmp->next != NULL)
+	{
+		tmp = tmp->next;
+	}
+	tmp->next = new;
+	new->prev = tmp;
 }

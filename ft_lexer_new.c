@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lexer_new.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 21:58:05 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/05/24 23:49:55 by aabdenou         ###   ########.fr       */
+/*   Created: 2023/11/16 22:19:58 by aabdenou          #+#    #+#             */
+/*   Updated: 2024/05/24 23:46:15 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int ac, char **av, char **env)
+t_lexer	*ft_lexer_new(char *str,int type)
 {
-	(void)env;
-	t_tool	tools;
-	// t_list *head = NULL;
-	// ft_memset(&tools,0,sizeof(t_tools));
+	t_lexer	*new_node;
+	// static int i; 
 
-	if (ac != 1 || av[1])
-	{
-		printf("This program does not accept arguments\n");
-		exit(0);
-	}
-	// tools.env = array_cpy(env);
-	loop_minishell(&tools);
+	new_node = malloc(sizeof(t_lexer));
+	if (new_node == NULL)
+		return (NULL);
+	new_node->str = str;
+	new_node->type = type;
+	// new_node->i = i++;
+	new_node->next = NULL;
+	new_node->prev = NULL;
+	return (new_node);
 }

@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 21:58:05 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/05/24 23:49:55 by aabdenou         ###   ########.fr       */
+/*   Created: 2023/11/16 23:25:15 by aabdenou          #+#    #+#             */
+/*   Updated: 2024/05/23 17:49:58 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int ac, char **av, char **env)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	(void)env;
-	t_tool	tools;
-	// t_list *head = NULL;
-	// ft_memset(&tools,0,sizeof(t_tools));
-
-	if (ac != 1 || av[1])
+	if (lst == NULL || new == NULL)
 	{
-		printf("This program does not accept arguments\n");
-		exit(0);
+		return ;
 	}
-	// tools.env = array_cpy(env);
-	loop_minishell(&tools);
+	new->next = *lst;
+	*lst = new;
 }

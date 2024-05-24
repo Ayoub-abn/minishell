@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 21:58:05 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/05/24 23:49:55 by aabdenou         ###   ########.fr       */
+/*   Created: 2023/11/18 19:36:16 by aabdenou          #+#    #+#             */
+/*   Updated: 2024/05/23 17:50:10 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int ac, char **av, char **env)
+int	ft_lstsize(t_list *lst)
 {
-	(void)env;
-	t_tool	tools;
-	// t_list *head = NULL;
-	// ft_memset(&tools,0,sizeof(t_tools));
+	t_list	*p;
+	int		i;
 
-	if (ac != 1 || av[1])
+	i = 0;
+	p = lst;
+	while (p != NULL)
 	{
-		printf("This program does not accept arguments\n");
-		exit(0);
+		p = p->next;
+		i++;
 	}
-	// tools.env = array_cpy(env);
-	loop_minishell(&tools);
+	return (i);
 }

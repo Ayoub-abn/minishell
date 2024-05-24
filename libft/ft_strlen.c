@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 21:58:05 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/05/24 23:49:55 by aabdenou         ###   ########.fr       */
+/*   Created: 2023/10/31 18:51:42 by aabdenou          #+#    #+#             */
+/*   Updated: 2024/05/24 23:39:35 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main(int ac, char **av, char **env)
+size_t	ft_strlen(const char *s)
 {
-	(void)env;
-	t_tool	tools;
-	// t_list *head = NULL;
-	// ft_memset(&tools,0,sizeof(t_tools));
+	size_t	i;
 
-	if (ac != 1 || av[1])
+	i = 0;
+	if (!s)
+		return (0);
+	while (s[i] != '\0')
 	{
-		printf("This program does not accept arguments\n");
-		exit(0);
+		i++;
 	}
-	// tools.env = array_cpy(env);
-	loop_minishell(&tools);
+	return (i);
 }

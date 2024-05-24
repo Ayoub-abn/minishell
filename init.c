@@ -1,29 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 21:58:05 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/05/24 23:49:55 by aabdenou         ###   ########.fr       */
+/*   Created: 2024/05/22 22:05:44 by aabdenou          #+#    #+#             */
+/*   Updated: 2024/05/22 22:06:09 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int ac, char **av, char **env)
+char	**array_cpy(char **env)
 {
-	(void)env;
-	t_tool	tools;
-	// t_list *head = NULL;
-	// ft_memset(&tools,0,sizeof(t_tools));
+	char	**array;
+	int		i;
 
-	if (ac != 1 || av[1])
+	i = 0;
+	while (env[i])
+		i++;
+	array = malloc((i + 1) * sizeof(char *));
+	if (array == NULL)
+		return (NULL);
+	i = 0;
+	while (env[i])
 	{
-		printf("This program does not accept arguments\n");
-		exit(0);
+		array[i] = ft_strdup(env[i]);
+		if (array[i] == NULL)
+		{
+			free(array);
+			return (NULL);
+		}
+		i++;
 	}
-	// tools.env = array_cpy(env);
-	loop_minishell(&tools);
+	array[i] = NULL;
+	return (array);
 }
