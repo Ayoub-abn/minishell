@@ -1,7 +1,6 @@
 NAME = minishell
 
-CFLAG = -Wall -Wextra -Werror
-CFLAG = -Wall -Wextra  -Werror -fsanitize=address -g3  
+CFLAG = -Wall -Wextra   -fsanitize=address -g3  #-Werror
 
 
 LIBFT_SRC = ./libft/ft_atoi.c       ./libft/ft_bzero.c \
@@ -41,8 +40,8 @@ all: ${NAME}
 
 ${NAME} : ${OBG}
 	@${CC} ${CFLAG} ${OBG} -lreadline -lhistory -o ${NAME}
-	@rm -f ${OBG} rm -f
 	@echo "💯"
+# @rm -f ${OBG} rm -f
 
 
 clean:
@@ -52,3 +51,4 @@ clean:
 fclean: clean
 	@rm -f ${NAME}
 	@echo "🗑️"
+re: fclean all

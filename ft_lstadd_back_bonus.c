@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:21:51 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/05/25 00:18:07 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/05/25 18:12:11 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	ft_lstadd_back(t_lexer **lst, t_lexer *new)
 	if (*lst == NULL)
 	{
 		*lst = new;
+		// new->prev = NULL;
 		return ;
 	}
 	while (tmp->next != NULL)
@@ -35,5 +36,5 @@ void	ft_lstadd_back(t_lexer **lst, t_lexer *new)
 		tmp = tmp->next;
 	}
 	tmp->next = new;
-	new->prev = tmp;
+	// new->prev = tmp;
 }

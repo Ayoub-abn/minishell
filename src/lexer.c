@@ -6,83 +6,142 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 18:10:04 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/05/25 00:17:48 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/05/25 23:09:44 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void add_node(t_lexer **head,int type,char *str)
+void	add_node(t_lexer **head, t_tokens type, char *str)
 {
-    t_lexer *node;
-    node = ft_lexer_new(str,type);
-    ft_lstadd_back(head,node);
+	t_lexer	*node;
+
+	// printf("%d\n",type);
+	// printf("%s\n",str);
+	node = ft_lexer_new(str, type);
+	if (!node)
+	{
+		//memory problem
+		return ;
+	}
+	ft_lstadd_back(head, node);
 }
-
-void lexer(t_tool *data)
+int	is_string(t_tool *data, int i)
 {
-    int i = 0;
+	int		start;
+	int		end;
+	char	*line;
 
-    data->lexer_list = malloc(sizeof(t_lexer));
-    if (!data->lexer_list)
-        return;
-    data->lexer_list->next = NULL;
-    data->lexer_list->prev = NULL;
-    data->lexer_list->str = NULL;
-    data->lexer_list->type = 0;
-    
-
-    while (data->cmd[i] != '\0')
+	start = i;
+    if(data->cmd[i] == 32)
     {
-        // Skip whitespace characters
-        while (data->cmd[i] == ' ' || data->cmd[i] == '\t')
+        i++;
+        while (data->cmd[i] != '\0' && data->cmd[i] != 32)
             i++;
-        
-        // Handle double character tokens (<<, >>)
-        if (data->cmd[i] == '<' && data->cmd[i + 1] == '<')
-        {
-            // printf("hi %d\n", i);
-            add_node(&data->lexer_list, HEREDOC, "<<");
-            i += 2;
-            continue;
-        }
-        if (data->cmd[i] == '>' && data->cmd[i + 1] == '>')
-        {
-            // printf("hi %d\n", i);
-            add_node(&data->lexer_list, APPEND, ">>");
-            i += 2;
-            continue;
-        }
-
-        // Handle single character tokens (>, <)
-        if (data->cmd[i] == '>')
-        {
-            // printf("hi %d\n", i);
-            add_node(&data->lexer_list, REDIR_OUT, ">");
-            i++;
-            continue;
-        }
-        if (data->cmd[i] == '<')
-        {
-            // printf("hi %d\n", i);
-            add_node(&data->lexer_list, REDIR_IN, "<");
-            i++;
-            continue;
-        }
-        if (data->cmd[i] == '|')
-        {
-            // printf("hi %d\n", i);
-            add_node(&data->lexer_list, PIPE, "|");
-            i++;
-            continue;
-        }
-
-        // Increment to move to the next character
         i++;
     }
-    
+    else
+    {
+        while (data->cmd[i] != '\0'
+			&& data->cmd[i] != '<'
+			&& data->cmd[i] != '>'
+            // && data->cmd[i] != '|'
+			// && data->cmd[i] != ' '
+			&& data->cmd[i] != '\t'
+			)
+                i++;
+    }
+    end = i;
+    line = ft_substr(data->cmd, start, end - start);
+    // printf("line %s \n",line);
+    add_node(&data->lexer_list, WORD, line);
+	return (i);
 }
 
+void	lexer(t_tool *data)
+{
+	int		i;
+	// int		start;
+	// int		end;
+	// char	*line;
+
+	data->lexer_list = malloc(sizeof(t_lexer));
+	if (!data->lexer_list)
+		return ;
+	data->lexer_list->next = NULL;
+	data->lexer_list->prev = NULL;
+	data->lexer_list->str = NULL;
+	data->lexer_list->tokens = 0;
+	i = 0;
+	while (data->cmd[i])
+	{
+		// Skip whitespace characters
+		while (data->cmd[i] && (data->cmd[i] == ' ' || data->cmd[i] == '\t'))
+			i++;
+		if (data->cmd[i] == 32)
+		    i = is_string(data,i);
+		if (!data->cmd[i])
+			break ;
+		// Handle double character tokens (<<, >>)
+		if (data->cmd[i] == '<' && data->cmd[i + 1] == '<')
+		{
+			add_node(&data->lexer_list, HEREDOC, "<<");
+			i += 2;
+			continue ;
+		}
+		if (data->cmd[i] == '>' && data->cmd[i + 1] == '>')
+		{
+			add_node(&data->lexer_list, APPEND, ">>");
+			i += 2;
+			continue ;
+		}
+		// Handle single character tokens (>, <)
+		if (data->cmd[i] == '>' && data->cmd[i + 1] != '>')
+		{
+			add_node(&data->lexer_list, REDIR_OUT, ">");
+			i++;
+			continue ;
+		}
+		if (data->cmd[i] == '<' && data->cmd[i + 1] != '<')
+		{
+			add_node(&data->lexer_list, REDIR_IN, "<");
+			i++;
+			continue ;
+		}
+		if (data->cmd[i] == '|')
+		{
+			add_node(&data->lexer_list, PIPE, "|");
+			i++;
+			continue ;
+		}
+		// Handle string
+		else
+		{
+			i = is_string(data,i);
+			// start = i;
+			// if(data->cmd[i] == 39)
+			// {
+			//     i++;
+			//     while (data->cmd[i] != '\0' && data->cmd[i] != 39)
+			//         i++;
+			// }
+			// else
+			// {
+			// while (data->cmd[i] != '\0' && data->cmd[i] != ' '
+			// 	&& data->cmd[i] != '\t' && data->cmd[i] != '<'
+            //     && data->cmd[i] != '\t' && data->cmd[i] != '>'
+			// 	&& data->cmd[i] != '|')
+			// 	i++;
+			// // }
+			// end = i;
+			// line = ft_substr(data->cmd, start, end - start);
+			// add_node(&data->lexer_list, WORD, line);
+			continue ;
+		}
+		// Increment to move to the next character
+		i++;
+	}
+}
 
 // t_lexer *lexer(char *line)
 // {

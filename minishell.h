@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 21:11:39 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/05/25 00:01:34 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/05/25 22:24:44 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,14 @@
 #include <unistd.h>
 #include "./libft/libft.h"
 
-#define WORD 0
-#define PIPE 1
-#define REDIR_IN 2
-#define REDIR_OUT 3
-#define HEREDOC 4
-#define APPEND 5
+
+
+// #define WORD 1
+// #define PIPE 2
+// #define REDIR_IN 3
+// #define REDIR_OUT 4
+// #define HEREDOC 5
+// #define APPEND 6
 
 typedef struct s_list
 {
@@ -33,10 +35,22 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
+typedef	enum e_num
+{
+	WORD ,
+	PIPE,
+	REDIR_IN,
+	REDIR_OUT,
+	HEREDOC,
+	APPEND,
+	
+}	t_tokens;
+
 typedef struct s_lexer
 {
 	char    	*str;
-	int			type;
+	// int			type;
+	t_tokens	tokens;
 	// int			i;
 	struct s_lexer	*next;
 	struct s_lexer	*prev;
@@ -59,7 +73,8 @@ typedef struct  s_tool
 ////////////////////list//////////////
 void				ft_lstadd_front(t_list **lst, t_list *new);
 // t_list				*ft_lstnew(void *content);
-t_lexer				*ft_lexer_new(char *str,int type);
+// t_lexer				*ft_lexer_new(char *str,int type);
+t_lexer	*ft_lexer_new(char *str,t_tokens type);
 // t_list				*ft_lstlast(t_list *lst);
 t_lexer				*ft_lstlast(t_lexer *lst);
 int					ft_lstsize(t_list *lst);
@@ -72,7 +87,8 @@ void	command_line(char **command,t_list **head);
 void	loop_minishell(t_tool *data);
 //////////////////////lexer//////////////////////////
 void lexer(t_tool *data);
-void add_node(t_lexer **head, int type,char *str);
+// void add_node(t_lexer **head, int type,char *str);
+void add_node(t_lexer **head,t_tokens type,char *str);
 void display_token(t_lexer *lexer);
 
 #endif
