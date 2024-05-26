@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 22:19:58 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/05/25 17:19:31 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/05/26 17:15:55 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ t_lexer	*ft_lexer_new(char *str,t_tokens type)
 	new_node->tokens = type;
 	// new_node->i = i++;
 	new_node->next = NULL;
-	new_node->prev = NULL;
+	// new_node->prev = NULL;
 	return (new_node);
 }

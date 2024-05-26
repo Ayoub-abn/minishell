@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 21:11:39 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/05/25 22:24:44 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/05/26 17:15:49 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_list
 
 typedef	enum e_num
 {
-	WORD ,
+	WORD,
 	PIPE,
 	REDIR_IN,
 	REDIR_OUT,
@@ -53,7 +53,7 @@ typedef struct s_lexer
 	t_tokens	tokens;
 	// int			i;
 	struct s_lexer	*next;
-	struct s_lexer	*prev;
+	// struct s_lexer	*prev;
 }	t_lexer;
 
 typedef struct  s_tool
