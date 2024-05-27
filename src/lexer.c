@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 18:10:04 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/05/27 12:13:58 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/05/27 19:17:49 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,19 @@ void	lexer(t_tool *data)
 	i = 0;
 	while (data->cmd[i])
 	{
-		
+		if (data->cmd[i] == ' ' || data->cmd[i] == '\t')
+		{
+			add_node(&data->lexer_list, WHITESPACE, " ");
+			while (data->cmd[i] && (data->cmd[i] == ' ' || data->cmd[i] == '\t'))
+				i++;
+			if (!data->cmd[i])
+				break ;
+		}
 		// Skip whitespace characters
-		while (data->cmd[i] && (data->cmd[i] == ' ' || data->cmd[i] == '\t'))
-			i++;
-		if (!data->cmd[i])
-			break ;
+		// while (data->cmd[i] && (data->cmd[i] == ' ' || data->cmd[i] == '\t'))
+		// 	i++;
+		// if (!data->cmd[i])
+		// 	break ;
 		// Handle double character tokens (<<, >>)
 		else if (data->cmd[i] == '<' && data->cmd[i + 1] == '<')
 		{

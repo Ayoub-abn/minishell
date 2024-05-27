@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 21:11:39 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/05/27 11:52:10 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/05/27 19:16:48 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,10 @@ typedef	enum e_num
 	REDIR_OUT,
 	HEREDOC,
 	APPEND,
-	
+	WHITESPACE,
 }	t_tokens;
+
+
 
 typedef struct s_lexer
 {
@@ -55,6 +57,13 @@ typedef struct s_lexer
 	struct s_lexer	*next;
 	// struct s_lexer	*prev;
 }	t_lexer;
+
+// typedef struct command
+// {
+// 	char **cmd;
+// 	t_lexer *lexer_list;
+// 	struct command *next;
+// };
 
 typedef struct  s_tool
 {

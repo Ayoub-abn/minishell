@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 23:55:12 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/05/27 12:11:05 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/05/27 19:19:02 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ char	*get_token(t_tokens token)
 		return ("HEREDOC");
 	else if (token == 5)
 		return ("APPEND");
+	else if (token == 6)
+		return ("WHITESPACE");
 	return ("A");
 	// char *str[6];
 	// str[0] = "WORD";

@@ -22,11 +22,11 @@ LIBFT_SRC = ./libft/ft_atoi.c       ./libft/ft_bzero.c \
  			./libft/ft_itoa.c       ./libft/ft_split.c\
 			ft_lexer_new.c 		ft_lstsize_bonus.c ft_lstlast_bonus.c \
 	   		ft_lstadd_back_bonus.c 	ft_lstadd_front_bonus.c\
-			./src/display_tokens.c
+			
 
 # LIBFT_SRC = $(wildcard libft/*.c) $(wildcard src/*.c) $(wildcard *.c)
 
-LIXER = src/lexer.c
+LIXER = src/lexer.c src/display_tokens.c
 
 SRC = main.c loop_minishell.c init.c ${LIBFT_SRC} ${LIXER}
 
