@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 21:58:05 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/05/25 17:33:35 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/05/27 11:54:07 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main(int ac, char **av, char **env)
 	(void)env;
 	t_tool	tools;
 	// t_list *head = NULL;
-	// ft_memset(&tools,0,sizeof(t_tools));
+	// ft_memset(&tools,0,sizeof(t_tool));
 
 	if (ac != 1 || av[1])
 	{

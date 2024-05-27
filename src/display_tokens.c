@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 23:55:12 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/05/26 15:45:03 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/05/27 12:11:05 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ void	display_token(t_lexer *lexer)
 	// temp = lexer;
 	while (lexer)
 	{
-		printf("value (%s) \t key (%s)\n", lexer->str,
-				get_token(lexer->tokens));
+		printf("value (%s) \t key (%s)\n", lexer->str,get_token(lexer->tokens));
 		lexer = lexer->next;
 	}
 }

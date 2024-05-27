@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 18:10:04 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/05/26 17:17:38 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/05/27 12:13:58 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 void	add_node(t_lexer **head, t_tokens type, char *str)
 {
 	t_lexer	*node;
-
-	// printf("%d\n",type);
-	// printf("str = %s\n",str);
 	node = ft_lexer_new(str, type);
 	if (!node)
 	{
@@ -74,10 +71,7 @@ void	lexer(t_tool *data)
 	data->lexer_list = malloc(sizeof(t_lexer));
 	if (!data->lexer_list)
 		return ;
-	data->lexer_list->next = NULL;
-	// data->lexer_list->prev = NULL;
-	data->lexer_list->str = NULL;
-	// data->lexer_list->tokens = 0;
+	data->lexer_list = NULL;
 	i = 0;
 	while (data->cmd[i])
 	{

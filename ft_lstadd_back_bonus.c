@@ -6,20 +6,18 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:21:51 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/05/25 18:12:11 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/05/27 12:10:50 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-
-
-
 void	ft_lstadd_back(t_lexer **lst, t_lexer *new)
 {
-	t_lexer	*tmp;
+	
+	t_lexer	*last;
 
-	tmp = *lst;
+	last = *lst;
 	
 	if (lst == NULL || new == NULL)
 	{
@@ -31,10 +29,10 @@ void	ft_lstadd_back(t_lexer **lst, t_lexer *new)
 		// new->prev = NULL;
 		return ;
 	}
-	while (tmp->next != NULL)
+	while (last->next != NULL)
 	{
-		tmp = tmp->next;
+		last = last->next;
 	}
-	tmp->next = new;
+	last->next = new;
 	// new->prev = tmp;
 }
