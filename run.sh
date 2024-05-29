@@ -1,3 +1,3 @@
 #!bin/bash
 
-make && clear && ./minishell
+make && make clean && clear && ./minishell
