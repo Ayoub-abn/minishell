@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 23:55:12 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/02 22:46:46 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/02 23:07:41 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,11 @@ char	*get_token(t_tokens token)
 // 		lexer = lexer->next;
 // 	}
 // }
-
+void	display_token(t_file *file)
+{
+	while (file)
+	{
+		printf("file_name : (%s) \tfile_type(%s)\n",file->file_name,get_token(file->file_type));
+		file = file->next;
+	}
+}

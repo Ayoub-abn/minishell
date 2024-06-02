@@ -115,7 +115,7 @@ int					syntax_error(t_tool *data);
 void				parser(t_tool *data);
 t_file				*ft_file_new(char *file_name,t_tokens type);
 void				ft_lstadd_back_command(t_command **lst, t_command *new);
-void				display_token_command(t_command *lexer);
+void	display_token(t_file *file);
 void	ft_lstadd_back_file(t_file **lst, t_file *new);
 char	*get_token(t_tokens token);
 #endif

@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 22:06:45 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/05/31 21:05:44 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/02 23:09:25 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	loop_minishell(t_tool *data)
 				continue;
 			}
 			parser(data);
+			// display_token(data->command->file);
+			
 			// display_token(data->lexer_list);
 			// display_token_command(data->command);
 		}
