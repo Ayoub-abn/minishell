@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 23:55:12 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/05/27 19:19:02 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/02 22:46:46 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,24 +29,37 @@ char	*get_token(t_tokens token)
 		return ("APPEND");
 	else if (token == 6)
 		return ("WHITESPACE");
+
+	// if (token == 1)
+	// 	return ("COMMAND");
+	// else if (token == 2)
+	// 	return ("IN_FILE");
+	// else if (token == 3)
+	// 	return ("OUT_FILE");
+	// else if (token == 4)
+	// 	return ("DEL");
 	return ("A");
-	// char *str[6];
-	// str[0] = "WORD";
-	// str[1] = "PIPE";
-	// str[2] = "REDIR_IN";
-	// str[3] = "REDIR_OUT";
-	// str[4] = "HEREDOC";
-	// str[5] = "APPEND";
-	// return (str[token]);
 }
 
-void	display_token(t_lexer *lexer)
-{
-	// t_lexer *temp;
-	// temp = lexer;
-	while (lexer)
-	{
-		printf("value (%s) \t key (%s)\n", lexer->str,get_token(lexer->tokens));
-		lexer = lexer->next;
-	}
-}
+// void	display_token(t_lexer *lexer)
+// {
+// 	// t_lexer *temp;
+// 	// temp = lexer;
+// 	while (lexer)
+// 	{
+// 		printf("value (%s) \t key (%s)\n", lexer->str,get_token(lexer->tokens));
+// 		lexer = lexer->next;
+// 	}
+// }
+// void	display_token_command(t_command *lexer)
+// {
+// 	// t_lexer *temp;
+// 	// temp = lexer;
+// 	while (lexer)
+// 	{
+// 		// printf("value (%s) \t key (%s)\n", lexer->str,get_token(lexer->tokens));
+// 		 printf("command = %s \t file_name = %s file_type = %s \n",lexer->cmd,lexer->file_name,get_token(lexer->file_type));
+// 		lexer = lexer->next;
+// 	}
+// }
+

@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 18:47:08 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/05/23 17:47:43 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/01 16:29:55 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 void				ft_putstr_fd(char *s, int fd);
 char				*ft_strchr(const char *s, int c);
-char				*ft_strdup(const char *s1);
+char				*ft_strdup(char *s1);
 void				ft_striteri(char *s, void (*f)(unsigned int, char *));
-char				*ft_strjoin(char const *s1, char const *s2);
+char				*ft_strjoin(char *s1, char *s2);
 size_t				ft_strlcpy(char *dst, const char *src, size_t dstsize);
-size_t				ft_strlen(const char *s);
+size_t				ft_strlen(const char  *str);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 char				*ft_strnstr(const char *haystack, const char *needle,

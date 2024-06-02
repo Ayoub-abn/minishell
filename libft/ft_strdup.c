@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabdenou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 17:18:05 by aabdenou          #+#    #+#             */
-/*   Updated: 2023/11/15 10:17:43 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/01 16:27:54 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s1)
+char	*ft_strdup(char *s1)
 {
 	int		i;
 	char	*p;

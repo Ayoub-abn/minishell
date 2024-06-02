@@ -26,9 +26,10 @@ LIBFT_SRC = ./libft/ft_atoi.c       ./libft/ft_bzero.c \
 
 # LIBFT_SRC = $(wildcard libft/*.c) $(wildcard src/*.c) $(wildcard *.c)
 
-LIXER = src/lexer.c src/display_tokens.c
+LIXER = src/lexer.c src/display_tokens.c syntax_error.c
+PARSRE = src/parser.c 
 
-SRC = main.c loop_minishell.c init.c ${LIBFT_SRC} ${LIXER}
+SRC = main.c loop_minishell.c init.c ${LIBFT_SRC} ${LIXER} ${PARSRE}
 
 OBG = ${SRC:.c=.o}
 
