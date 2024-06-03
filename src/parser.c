@@ -6,12 +6,11 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:21:56 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/02 23:10:08 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/03 15:24:54 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
 
 void	add_node_file(t_file **head, char *file_name, t_tokens type)
 {
@@ -20,11 +19,11 @@ void	add_node_file(t_file **head, char *file_name, t_tokens type)
 	node = ft_file_new(file_name, type);
 	ft_lstadd_back_file(head, node);
 	display_token((*head));
-
 }
 void	handel_token(t_lexer **head, t_file **file, t_tokens type)
 {
 	char	*file_name;
+
 	file_name = NULL;
 	if ((*head)->next && (*head)->next->tokens == WHITESPACE)
 		(*head) = (*head)->next;
@@ -43,15 +42,13 @@ void	handel_token(t_lexer **head, t_file **file, t_tokens type)
 	free(file_name);
 }
 
-
-
 void	parser(t_tool *data)
 {
 	t_lexer	*head;
 	t_file	*file;
-	// char	*file_name;
+	char	*command;
 
-	// char	*command;
+	command = NULL;
 	// t_command	*command_list;
 	// command = NULL;
 	head = data->lexer_list;
@@ -59,46 +56,31 @@ void	parser(t_tool *data)
 	// command_list = NULL;
 	while (head)
 	{
-		// if (head->tokens == WORD)
-		//     {
-		//         while (head /* || head->next->tokens != WORD
-		//			|| head->next->tokens != WHITESPACE */)
-		//         {
-		//             if(head == WORD)
-		//             {
-		//                 command = ft_strjoin(command, head->str);
-		//                 if (head->next == NULL)
-		//                      break ;
-		//                 if (head->next->tokens == WHITESPACE)
-		//                     command = ft_strjoin(command, " ");
-		//             }
-		//             head = head->next;
-		//         }
-		//     }
 		if (head->tokens != WORD && head->tokens != PIPE)
 		{
 			file = NULL;
-			if (head->tokens == REDIR_IN)
+			if (head->tokens == REDIR_IN || head->tokens == REDIR_OUT ||
+				head->tokens == HEREDOC || head->tokens == APPEND)
 			{
-				handel_token(&head, &file, REDIR_IN);
-				continue ;
+				handel_token(&head, &file, head->tokens);
 			}
-			if(head->tokens == REDIR_OUT)
+			else
+				head = head->next;
+		}
+		else if (head->tokens == WORD)
+		{
+			while (head && head->tokens == WORD)
 			{
-				handel_token(&head, &file, REDIR_OUT);
-				continue;
-			}
-			if(head->tokens == HEREDOC)
-			{
-				handel_token(&head, &file, HEREDOC);
-				continue;
-			}
-			if(head->tokens == APPEND)
-			{
-				handel_token(&head, &file, APPEND);
-				continue;
+				command = ft_strjoin(command, head->str);
+				if (head->next && head->next->tokens == WHITESPACE)
+				{
+					command = ft_strjoin(command, " ");
+				}
+				head = head->next;
 			}
 		}
-		head = head->next;
+		else
+			head = head->next;
 	}
+	printf("command = (%s)\n", command);
 }

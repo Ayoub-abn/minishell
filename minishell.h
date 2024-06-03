@@ -43,10 +43,6 @@ typedef enum e_num
 	HEREDOC,
 	APPEND,
 	WHITESPACE,
-	// COMMAND,
-	// IN_FILE,
-	// OUT_FILE,
-	// DEL,
 }					t_tokens;
 
 
@@ -63,7 +59,7 @@ typedef struct s_lexer
 typedef struct s_file
 {
 	char 		*file_name;
-	char		*del;
+	// char		*del;
 	t_tokens	 file_type;
 	struct s_file *next;
 }	t_file;
