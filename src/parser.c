@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:21:56 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/04 18:24:28 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/04 19:45:30 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,18 @@ void	handel_token(t_lexer **head, t_file **file, t_tokens type)
 	free(file_name);
 }
 
+// char *rm_quotes(char *command)
+// {
+// 	char *rus;
+// 	char qoute;
+// 	int i = 0;
+// 	while (command[i])
+// 	{
+// 		if(command[i] = '"' || )
+// 	}
+	
+// }
+
 void	parser(t_tool *data)
 {
 	t_lexer	*head;
@@ -51,11 +63,11 @@ void	parser(t_tool *data)
 	char **command_arg = NULL;
 
 	command = NULL;
-	// t_command	*command_list;
+	t_command	*command_list;
 	// command = NULL;
 	head = data->lexer_list;
-	// command_list = malloc(sizeof(t_command));
-	// command_list = NULL;
+	command_list = malloc(sizeof(t_command));
+	command_list = NULL;
 	while (head)
 	{
 		if (head->tokens != WORD && head->tokens != PIPE)
@@ -85,11 +97,11 @@ void	parser(t_tool *data)
 			head = head->next;
 	}
 	command_arg = ft_split(command,' ');
+	// printf("command = (%s)\n", command);
 	int i = 0;
 	while (command_arg[i])
 	{
 		printf("command_arg = (%s)\n", command_arg[i++]);
 	}
-		// printf("command = (%s)\n", command);
 	
 }

@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 18:11:12 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/04 18:27:46 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/04 19:42:08 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,12 @@ static char	**free_list(char **str, int n)
 char	**ft_split(char const *s, char c)
 {
 	char	**ptr;
+	char *line;
 	char quote_char;
 	int		i;
 	int		n;
-	int start = 0;
-	int end = 0;
+	int start;
+	int end;
 
 	ptr = (char **)malloc((count_words(s, c) + 1) * sizeof(char *));
 	if (ptr == NULL)
@@ -71,14 +72,16 @@ char	**ft_split(char const *s, char c)
 	{
 		while (s[i] == c && s[i])
 			i++;
+		if(s[i] == '\0')
+			break;
 		if(s[i] == '"' || s[i] == '\'')
 		{
 			quote_char = s[i];
-			i++;
 			start = i;
+			i++;
             while (s[i] && s[i] != quote_char)
                 i++;
-			end = i;
+			end = i + 1;
 			if (s[i] == quote_char)
                 i++;
 		}
