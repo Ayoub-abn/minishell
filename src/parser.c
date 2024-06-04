@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:21:56 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/04 18:10:28 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/04 18:24:28 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,11 @@ void	parser(t_tool *data)
 			head = head->next;
 	}
 	command_arg = ft_split(command,' ');
-	// printf("command = (%s)\n", command);
+	int i = 0;
+	while (command_arg[i])
+	{
+		printf("command_arg = (%s)\n", command_arg[i++]);
+	}
+		// printf("command = (%s)\n", command);
+	
 }
