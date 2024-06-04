@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:21:56 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/03 15:24:54 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/04 18:10:28 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	parser(t_tool *data)
 	t_file	*file;
 	char	*command;
 
+	char **command_arg = NULL;
+
 	command = NULL;
 	// t_command	*command_list;
 	// command = NULL;
@@ -82,5 +84,6 @@ void	parser(t_tool *data)
 		else
 			head = head->next;
 	}
-	printf("command = (%s)\n", command);
+	command_arg = ft_split(command,' ');
+	// printf("command = (%s)\n", command);
 }

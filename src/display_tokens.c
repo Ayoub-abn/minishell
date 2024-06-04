@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 23:55:12 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/02 23:07:41 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/04 18:02:18 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,6 @@ char	*get_token(t_tokens token)
 		return ("APPEND");
 	else if (token == 6)
 		return ("WHITESPACE");
-
-	// if (token == 1)
-	// 	return ("COMMAND");
-	// else if (token == 2)
-	// 	return ("IN_FILE");
-	// else if (token == 3)
-	// 	return ("OUT_FILE");
-	// else if (token == 4)
-	// 	return ("DEL");
 	return ("A");
 }
 
