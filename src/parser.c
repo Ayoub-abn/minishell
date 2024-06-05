@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:21:56 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/04 19:45:30 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/05 20:07:04 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,15 @@ void	add_node_file(t_file **head, char *file_name, t_tokens type)
 	node = ft_file_new(file_name, type);
 	ft_lstadd_back_file(head, node);
 	display_token((*head));
+}
+void	add_node_command(t_command **head, char *command)
+{
+	t_command	*node;
+
+	// int i = 0;
+	node = ft_command_new(command);
+	ft_lstadd_back_command(head, node);
+	display_token_command((*head));
 }
 void	handel_token(t_lexer **head, t_file **file, t_tokens type)
 {
@@ -42,66 +51,63 @@ void	handel_token(t_lexer **head, t_file **file, t_tokens type)
 	free(file_name);
 }
 
-// char *rm_quotes(char *command)
-// {
-// 	char *rus;
-// 	char qoute;
-// 	int i = 0;
-// 	while (command[i])
-// 	{
-// 		if(command[i] = '"' || )
-// 	}
-	
-// }
-
 void	parser(t_tool *data)
 {
-	t_lexer	*head;
-	t_file	*file;
-	char	*command;
-
-	char **command_arg = NULL;
+	t_lexer		*head;
+	t_file		*file;
+	char		*command;
+	t_command	*command_list;
 
 	command = NULL;
-	t_command	*command_list;
-	// command = NULL;
+	command = NULL;
 	head = data->lexer_list;
 	command_list = malloc(sizeof(t_command));
 	command_list = NULL;
 	while (head)
 	{
-		if (head->tokens != WORD && head->tokens != PIPE)
-		{
-			file = NULL;
-			if (head->tokens == REDIR_IN || head->tokens == REDIR_OUT ||
-				head->tokens == HEREDOC || head->tokens == APPEND)
+		// while (head && head->tokens != PIPE)
+		// {
+			if (head->tokens != WORD)
 			{
-				handel_token(&head, &file, head->tokens);
+				file = NULL;
+				if (head->tokens == REDIR_IN || head->tokens == REDIR_OUT ||
+					head->tokens == HEREDOC || head->tokens == APPEND)
+				{
+					handel_token(&head, &file, head->tokens);
+				}
+				else
+					head = head->next;
+			}
+			else if (head->tokens == WORD)
+			{
+				while (head && head->tokens == WORD)
+				{
+					command = ft_strjoin(command, head->str);
+					if (head->next && head->next->tokens == WHITESPACE)
+					{
+						command = ft_strjoin(command, " ");
+					}
+					head = head->next;
+				}
+				printf("command = (%s)\n", command);
+				// free(command);
 			}
 			else
 				head = head->next;
-		}
-		else if (head->tokens == WORD)
-		{
-			while (head && head->tokens == WORD)
-			{
-				command = ft_strjoin(command, head->str);
-				if (head->next && head->next->tokens == WHITESPACE)
-				{
-					command = ft_strjoin(command, " ");
-				}
-				head = head->next;
-			}
-		}
-		else
-			head = head->next;
+		// }
+		// if (head->tokens == PIPE)
+		// 	head = head->next;
+		
 	}
-	command_arg = ft_split(command,' ');
-	// printf("command = (%s)\n", command);
+	// if (command)
+	// {
+	// 	add_node_command(&command_list, command);
+	// }
+	// add_node_command(&command_list,command);
+	char **command_arg = ft_split(command,' ');
 	int i = 0;
 	while (command_arg[i])
 	{
-		printf("command_arg = (%s)\n", command_arg[i++]);
+	printf("command_arg = (%s)\n", command_arg[i++]);
 	}
-	
 }

@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 22:19:58 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/02 16:17:57 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/04 23:10:58 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,33 @@ t_file	*ft_file_new(char *file_name,t_tokens type)
 		return (NULL);
 	new_node->file_name = file_name;
 	new_node->file_type = type;
+	new_node->next = NULL;
+	// new_node->prev = NULL;
+	return (new_node);
+}
+t_command	*ft_command_new(char *command)
+{
+	t_command	*new_node;
+	char **command_arg = ft_split(command,' ');
+	if (!command_arg)
+		return (NULL);
+	int i = 0;
+	while (command_arg[i])
+		i++;
+	new_node = malloc(sizeof(t_command));
+	if (new_node == NULL)
+		return (NULL);
+	new_node->cmd = malloc(sizeof(char *) * i);
+	if (!new_node->cmd)
+		return (NULL);
+	i = 0;
+	while (command_arg[i])
+	{
+		// printf("%s\n",command_arg[i]);
+		new_node->cmd[i] = command_arg[i];
+		i++;
+	}
+	// new_node->cmd[i] = NULL;
 	new_node->next = NULL;
 	// new_node->prev = NULL;
 	return (new_node);
