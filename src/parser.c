@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:21:56 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/06 02:39:54 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/06 23:11:24 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,14 +82,6 @@ void	parser(t_tool *data)
 					}
 					head = head->next;
 				}
-				if (command)
-				{
-				
-					add_node_command(&command_list, command);
-					// printf("%s\n",command);
-					command = NULL;
-				}
-				// free(command);
 			}
 			else if (head->tokens != WORD)
 			{
@@ -109,8 +101,12 @@ void	parser(t_tool *data)
 		}
 		if (head && head->tokens == PIPE)
 			head = head->next;
+		add_node_command(&command_list, command);
+		// printf("%s\n",command);
+		command = NULL;
 	}
 	display_token_command(command_list,file);
+	// display_token_command(command_list);
 	// display_token(file);
 	
 	// add_node_command(&command_list,command);

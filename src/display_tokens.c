@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 23:55:12 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/06 02:41:35 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/06 23:12:26 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ void display_token_command(t_command *command,t_file *file)
 	// (void) file;
 
 	
-	if(command)
-	{
+	// if(command)
+	// {
 		while (command)
 		{
 			printf("command[%d]:\n", node);
@@ -117,20 +117,20 @@ void display_token_command(t_command *command,t_file *file)
 			node++;
 			command = command->next;
 		}
-	}
-	else
-		printf("\tNo command content\n");
-	if (file)
-	{
+	// }
+	// else
+	// 	printf("\tNo command content\n");
+	// if (file)
+	// {
 		while (file)
 		{
 			printf("\tfile type: %s\n", get_token(current_file->file_type));
 			// printf("\t file name %s\n",current_file->file_name);
 			file = file->next;
 		}
-	}
-	else
-		printf("\tNo files associated\n");
+	// }
+	// else
+	// 	printf("\tNo files associated\n");
 }
 
 
