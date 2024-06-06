@@ -114,5 +114,6 @@ void					ft_lstadd_back_command(t_command **lst, t_command *new);
 void					display_token(t_file *file);
 void					ft_lstadd_back_file(t_file **lst, t_file *new);
 char					*get_token(t_tokens token);
-void	display_token_command(t_command *file);
+// void	display_token_command(t_command *command);
+void	display_token_command(t_command *command,t_file *file);
 #endif

@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:21:56 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/05 20:07:04 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/06 02:39:54 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,17 @@ void	add_node_file(t_file **head, char *file_name, t_tokens type)
 
 	node = ft_file_new(file_name, type);
 	ft_lstadd_back_file(head, node);
-	display_token((*head));
+	// display_token((*head));
 }
 void	add_node_command(t_command **head, char *command)
 {
 	t_command	*node;
 
 	// int i = 0;
+	// printf("HI\n");
 	node = ft_command_new(command);
 	ft_lstadd_back_command(head, node);
-	display_token_command((*head));
+	// display_token_command((*head));
 }
 void	handel_token(t_lexer **head, t_file **file, t_tokens type)
 {
@@ -54,31 +55,23 @@ void	handel_token(t_lexer **head, t_file **file, t_tokens type)
 void	parser(t_tool *data)
 {
 	t_lexer		*head;
-	t_file		*file;
 	char		*command;
 	t_command	*command_list;
 
 	command = NULL;
-	command = NULL;
 	head = data->lexer_list;
-	command_list = malloc(sizeof(t_command));
+	// command_list = malloc(sizeof(t_command));
 	command_list = NULL;
+	// command_list->file = NULL;
+	t_file		*file;
+	file = NULL;
+	
+	
 	while (head)
 	{
-		// while (head && head->tokens != PIPE)
-		// {
-			if (head->tokens != WORD)
-			{
-				file = NULL;
-				if (head->tokens == REDIR_IN || head->tokens == REDIR_OUT ||
-					head->tokens == HEREDOC || head->tokens == APPEND)
-				{
-					handel_token(&head, &file, head->tokens);
-				}
-				else
-					head = head->next;
-			}
-			else if (head->tokens == WORD)
+		while (head && head->tokens != PIPE)
+		{
+			if (head->tokens == WORD)
 			{
 				while (head && head->tokens == WORD)
 				{
@@ -89,25 +82,42 @@ void	parser(t_tool *data)
 					}
 					head = head->next;
 				}
-				printf("command = (%s)\n", command);
+				if (command)
+				{
+				
+					add_node_command(&command_list, command);
+					// printf("%s\n",command);
+					command = NULL;
+				}
 				// free(command);
 			}
-			else
-				head = head->next;
-		// }
-		// if (head->tokens == PIPE)
-		// 	head = head->next;
-		
+			else if (head->tokens != WORD)
+			{
+				// t_file		*file;
+				// file = malloc(sizeof(t_file));
+				file = NULL;
+				// file->file_name = NULL;
+				if (head->tokens == REDIR_IN || head->tokens == REDIR_OUT ||
+					head->tokens == HEREDOC || head->tokens == APPEND)
+				{
+					handel_token(&head, &file, head->tokens);
+					// handel_token(&head, &command_list->file, head->tokens);
+				}
+				else
+					head = head->next;
+			}	
+		}
+		if (head && head->tokens == PIPE)
+			head = head->next;
 	}
-	// if (command)
-	// {
-	// 	add_node_command(&command_list, command);
-	// }
+	display_token_command(command_list,file);
+	// display_token(file);
+	
 	// add_node_command(&command_list,command);
-	char **command_arg = ft_split(command,' ');
-	int i = 0;
-	while (command_arg[i])
-	{
-	printf("command_arg = (%s)\n", command_arg[i++]);
-	}
+	// char **command_arg = ft_split(command,' ');
+	// int i = 0;
+	// while (command_arg[i])
+	// {
+	// printf("command_arg = (%s)\n", command_arg[i++]);
+	// }
 }

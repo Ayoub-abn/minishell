@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 22:19:58 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/04 23:10:58 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/05 22:25:40 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,20 +49,22 @@ t_command	*ft_command_new(char *command)
 	int i = 0;
 	while (command_arg[i])
 		i++;
+	// printf("%d\n",i);
 	new_node = malloc(sizeof(t_command));
 	if (new_node == NULL)
 		return (NULL);
-	new_node->cmd = malloc(sizeof(char *) * i);
+	new_node->cmd = malloc(sizeof(char *) * (i + 1));
 	if (!new_node->cmd)
 		return (NULL);
 	i = 0;
 	while (command_arg[i])
 	{
-		// printf("%s\n",command_arg[i]);
 		new_node->cmd[i] = command_arg[i];
+		// printf("%s\n",new_node->cmd[i]);
 		i++;
 	}
-	// new_node->cmd[i] = NULL;
+	// printf("%s\n",new_node->cmd[i]);
+	new_node->cmd[i] = NULL;
 	new_node->next = NULL;
 	// new_node->prev = NULL;
 	return (new_node);

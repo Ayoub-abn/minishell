@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:21:51 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/04 22:13:25 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/06 02:31:21 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	ft_lstadd_back_file(t_file **lst, t_file *new)
 		// new->prev = NULL;
 		return ;
 	}
+	// printf("%p\n",lst);
 	while (last->next != NULL)
 	{
 		last = last->next;
