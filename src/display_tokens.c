@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 23:55:12 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/07 16:44:22 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/07 20:28:54 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,14 +130,14 @@ void display_token_command(t_command *command, t_file *file)
 
     // if (file)
     // {
-        while (file)
-        {
-            printf("\tfile type: %s\n", get_token(file->file_type));
-            // Uncomment the following line if you need to display the file name as well
-            // printf("\tfile name: %s\n", file->file_name);
-            file = file->next;
-        }
-    // }
+    //     while (file)
+    //     {
+    //         printf("\tfile type: %s\n", get_token(file->file_type));
+    //         // Uncomment the following line if you need to display the file name as well
+    //         // printf("\tfile name: %s\n", file->file_name);
+    //         file = file->next;
+    //     }
+    // // }
     // else
     // {
     //     printf("\tNo files associated\n");

@@ -108,8 +108,10 @@ int						syntax_error(t_tool *data);
 /////////////////////parser///////////////////////////
 // void					parser(t_tool *data);
 // void	parser(t_lexer *data);
+char *remove_quotes (char *arg);
 void	parser(t_lexer *data , t_command *command_list);
 t_file					*ft_file_new(char *file_name, t_tokens type);
+// t_command				*ft_command_new(char *command);
 t_command				*ft_command_new(char *command);
 void					ft_lstadd_back_command(t_command **lst, t_command *new);
 void					display_token(t_file *file);
