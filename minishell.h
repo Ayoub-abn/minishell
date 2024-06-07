@@ -58,7 +58,6 @@ typedef struct s_lexer
 typedef struct s_file
 {
 	char				*file_name;
-	// char		*del;
 	t_tokens			file_type;
 	struct s_file		*next;
 }						t_file;
@@ -108,6 +107,8 @@ int						unexpected_token(t_lexer *head);
 int						syntax_error(t_tool *data);
 /////////////////////parser///////////////////////////
 void					parser(t_tool *data);
+// void	parser(t_lexer *data);
+// void	parser(t_lexer *data , t_command *command_list);
 t_file					*ft_file_new(char *file_name, t_tokens type);
 t_command				*ft_command_new(char *command);
 void					ft_lstadd_back_command(t_command **lst, t_command *new);

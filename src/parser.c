@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:21:56 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/06 23:11:24 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/07 18:23:57 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,12 @@ void	parser(t_tool *data)
 	// command_list = malloc(sizeof(t_command));
 	command_list = NULL;
 	// command_list->file = NULL;
+	// t_file		*file;
 	t_file		*file;
+	// file = command_list->file;
+	// file = malloc(sizeof(t_file));
 	file = NULL;
+	
 	
 	
 	while (head)
@@ -85,10 +89,7 @@ void	parser(t_tool *data)
 			}
 			else if (head->tokens != WORD)
 			{
-				// t_file		*file;
-				// file = malloc(sizeof(t_file));
-				file = NULL;
-				// file->file_name = NULL;
+				
 				if (head->tokens == REDIR_IN || head->tokens == REDIR_OUT ||
 					head->tokens == HEREDOC || head->tokens == APPEND)
 				{
@@ -99,11 +100,11 @@ void	parser(t_tool *data)
 					head = head->next;
 			}	
 		}
+		add_node_command(&command_list, command);
+		command = NULL;
 		if (head && head->tokens == PIPE)
 			head = head->next;
-		add_node_command(&command_list, command);
 		// printf("%s\n",command);
-		command = NULL;
 	}
 	display_token_command(command_list,file);
 	// display_token_command(command_list);

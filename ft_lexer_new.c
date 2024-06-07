@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 22:19:58 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/05 22:25:40 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/07 18:06:46 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ t_command	*ft_command_new(char *command)
 	}
 	// printf("%s\n",new_node->cmd[i]);
 	new_node->cmd[i] = NULL;
+	new_node->file = NULL;
 	new_node->next = NULL;
 	// new_node->prev = NULL;
 	return (new_node);

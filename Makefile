@@ -1,7 +1,6 @@
 NAME = minishell
 
-CFLAG = -Wall -Wextra -fsanitize=address -g3  #-Werror
-
+CFLAG = -Wall -Wextra  -Werror -fsanitize=address -g3 
 
 LIBFT_SRC = ./libft/ft_atoi.c       ./libft/ft_bzero.c \
 			./libft/ft_calloc.c     ./libft/ft_isalnum.c\

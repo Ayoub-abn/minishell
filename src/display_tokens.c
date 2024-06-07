@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 23:55:12 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/06 23:12:26 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/07 16:44:22 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,46 +92,58 @@ void	display_token(t_file *file)
 //         command = command->next;
 //     }
 // }
-void display_token_command(t_command *command,t_file *file)
+void display_token_command(t_command *command, t_file *file)
 {
-	t_file *current_file = file;
+    // t_file *current_file = file;
     int node = 1;
-	// (void) file;
 
-	
-	// if(command)
-	// {
-		while (command)
-		{
-			printf("command[%d]:\n", node);
+    // if (command)
+    // {
+        while (command)
+        {
+            printf("command[%d]:\n", node);
 
-			if (command->cmd)
-			{
-				int i = 0;
-				while (command->cmd[i])
-				{
-					printf("\tcontent[%d]: %s\n", i + 1, command->cmd[i]);
-					i++;
-				}
-			}
-			node++;
-			command = command->next;
-		}
-	// }
-	// else
-	// 	printf("\tNo command content\n");
-	// if (file)
-	// {
-		while (file)
-		{
-			printf("\tfile type: %s\n", get_token(current_file->file_type));
-			// printf("\t file name %s\n",current_file->file_name);
-			file = file->next;
-		}
-	// }
-	// else
-	// 	printf("\tNo files associated\n");
+            if (command->cmd)
+            {
+                int i = 0;
+                while (command->cmd[i])
+                {
+                    printf("\tcontent[%d]: %s\n", i + 1, command->cmd[i]);
+                    i++;
+                }
+            }
+			while (file)
+       		{
+            	printf("\tfile type: %s\n", get_token(file->file_type));
+            	// Uncomment the following line if you need to display the file name as well
+            	// printf("\tfile name: %s\n", file->file_name);
+            	file = file->next;
+        	}
+            node++;
+            command = command->next;
+        }
+    // }
+    // else
+    // {
+    //     printf("\tNo commands present\n");
+    // }
+
+    // if (file)
+    // {
+        while (file)
+        {
+            printf("\tfile type: %s\n", get_token(file->file_type));
+            // Uncomment the following line if you need to display the file name as well
+            // printf("\tfile name: %s\n", file->file_name);
+            file = file->next;
+        }
+    // }
+    // else
+    // {
+    //     printf("\tNo files associated\n");
+    // }
 }
+
 
 
 
