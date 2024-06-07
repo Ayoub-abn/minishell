@@ -106,9 +106,9 @@ int						check_quotes(t_lexer *head);
 int						unexpected_token(t_lexer *head);
 int						syntax_error(t_tool *data);
 /////////////////////parser///////////////////////////
-void					parser(t_tool *data);
+// void					parser(t_tool *data);
 // void	parser(t_lexer *data);
-// void	parser(t_lexer *data , t_command *command_list);
+void	parser(t_lexer *data , t_command *command_list);
 t_file					*ft_file_new(char *file_name, t_tokens type);
 t_command				*ft_command_new(char *command);
 void					ft_lstadd_back_command(t_command **lst, t_command *new);

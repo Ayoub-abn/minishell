@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:21:56 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/07 18:23:57 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/07 18:43:23 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,14 @@ void	handel_token(t_lexer **head, t_file **file, t_tokens type)
 	free(file_name);
 }
 
-void	parser(t_tool *data)
+void	parser(t_lexer *data,t_command *command_list)
 {
 	t_lexer		*head;
 	char		*command;
-	t_command	*command_list;
+	// t_command	*command_list;
 
 	command = NULL;
-	head = data->lexer_list;
+	head = data;
 	// command_list = malloc(sizeof(t_command));
 	command_list = NULL;
 	// command_list->file = NULL;
