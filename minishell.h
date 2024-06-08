@@ -65,7 +65,7 @@ typedef struct s_file
 typedef struct s_command
 {
 	// char			*cmd;
-	char				**cmd;
+	char				**cmd/*[0] =>command | [0 + 1] =>arg command*/;
 	t_file				*file;
 	struct s_command	*next;
 }						t_command;

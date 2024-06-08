@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 23:55:12 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/08 15:43:36 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/08 17:24:21 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	display_token(t_file *file)
 void display_token_command(t_command *command,  t_file *file )
 {
     // t_file *current_file = file;
-    (void) file;
+    // (void) file;
     int node = 1;
     
         while (command)
@@ -109,17 +109,17 @@ void display_token_command(t_command *command,  t_file *file )
                 {
                     printf("\tcontent[%d]: %s\n", i + 1, command->cmd[i]);
             	// Uncomment the following line if you need to display the file name as wel
-                    while (command->file)
-                    {
-            	        printf("\tfile name: %s\n", command->file->file_name);   
-                        printf("\tfile type: %s\n", get_token(command->file->file_type));
-                        command->file = command->file->next;
-                    }
+                    // while (command->file)
+                    // {
+            	    //     printf("\tfile name: %s\n", command->file->file_name);   
+                    //     printf("\tfile type: %s\n", get_token(command->file->file_type));
+                    //     command->file = command->file->next;
+                    // }
             	    // file = file->next;
                     i++;
                 }
             }
-			// while (co)
+			// while (file)
        		// {
             // 	printf("\tfile type: %s\n", get_token(file->file_type));
             // 	// Uncomment the following line if you need to display the file name as well
@@ -135,16 +135,16 @@ void display_token_command(t_command *command,  t_file *file )
     //     printf("\tNo commands present\n");
     // }
 
-    // if (file)
-    // {
-    //     while (file)
-    //     {
-    //         printf("\tfile type: %s\n", get_token(file->file_type));
-    //         // Uncomment the following line if you need to display the file name as well
-    //         // printf("\tfile name: %s\n", file->file_name);
-    //         file = file->next;
-    //     }
-    // // }
+    if (file)
+    {
+        while (file)
+        {
+            printf("\tfile type: %s\n", get_token(file->file_type));
+            // Uncomment the following line if you need to display the file name as well
+            printf("\tfile name: %s\n", file->file_name);
+            file = file->next;
+        }
+    }
     // else
     // {
     //     printf("\tNo files associated\n");

@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:21:56 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/08 15:46:39 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/08 17:23:43 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ void	parser(t_lexer *data,t_command *command_list)
 		}
 		add_node_command(&command_list, command);
 		command = NULL;
-		file = NULL;
+		// file = NULL;
 		if (head && head->tokens == PIPE)
 		{
 			head = head->next;
