@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:21:56 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/08 18:48:15 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/08 18:57:01 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*remove_quotes(char *arg)
 	char	*str;
 
 	if(arg == NULL)
-		return(NULL);
+		return("");
 	i = 0;
 	j = 0;
 	str = malloc(ft_strlen(arg) * (sizeof(char) + 1));

@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 15:21:27 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/05/29 17:00:57 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/09 00:44:44 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,35 +30,59 @@ int check_quotes(t_lexer *head)
 	}
 	return(0);
 }
-// if fun return 1 ====>error 
 int unexpected_token(t_lexer *head)
 {
-	//Continuing loop Until you find (<,<<,>,>>,|)
-	while (head)
-	{
-		if(head->tokens != WORD && head->tokens != WHITESPACE )
-			break;
-		head = head->next;
-	}
-	if(!head)
-		return(0);
-	else 
-	{
-		//nothing after the token
-		if(head->next == NULL)
-			return(1);
-		//skip space
-		if (head->next->tokens == WHITESPACE)
-			head = head->next;
-		//nothing after space
-		if(head->next == NULL)
-			return(1);
-		//check if node after space is not a word 
-		if (head->next->tokens != WORD)
-			return (1);
-	}
-	return(0);
+    // Loop until we find a non-word and non-whitespace token
+    while (head)
+    {
+        if (head->tokens != WORD && head->tokens != WHITESPACE)
+            break;
+        head = head->next;
+    }
+    
+    // If we reach the end of the list, there's no error
+    if (!head)
+        return 0;
+    
+    // Handle the case where the current token is a PIPE
+    if (head->tokens == PIPE)
+    {
+        // A pipe cannot be the last token
+        if (head->next == NULL)
+            return 1;
+        
+        // Skip any whitespace immediately following the pipe
+        if (head->next->tokens == WHITESPACE)
+            head = head->next;
+        
+        // A pipe cannot be followed only by whitespace
+        if (head->next == NULL)
+            return 1;
+        
+        // Ensure the token after whitespace (if any) is not a pipe
+        if (head->next->tokens == PIPE)
+            return 1;
+    }
+    // Handle the case for other special tokens
+    else if (head->tokens != PIPE)
+    {
+        // Any other special token must be followed by a non-whitespace word
+        if (head->next == NULL)
+            return 1;
+        
+        // Skip any whitespace immediately following the special token
+        if (head->next->tokens == WHITESPACE)
+            head = head->next;
+        
+        // Ensure the token after whitespace (if any) is a word
+        if (head->next == NULL || head->next->tokens != WORD)
+            return 1;
+    }
+    
+    // If all checks pass, there is no unexpected token
+    return 0;
 }
+
 // if fun return 1 ====>error 
 int	syntax_error(t_tool *data)
 {

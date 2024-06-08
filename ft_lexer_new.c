@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 22:19:58 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/08 18:30:48 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/08 23:50:09 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,3 @@ t_command	*ft_command_new(char *command ,t_file *file)
 	// new_node->prev = NULL;
 	return (new_node);
 }
-// "la"a => mazl khadi khaseha tsayb 
-

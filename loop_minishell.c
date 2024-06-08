@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 22:06:45 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/07 18:29:53 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/09 00:45:16 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	loop_minishell(t_tool *data)
 {
 	while (1)
-	{
+{
 		data->cmd = readline("minishell$ ");
 		if (ft_strlen(data->cmd) > 0)
 		{
@@ -24,11 +24,12 @@ void	loop_minishell(t_tool *data)
 			lexer(data);
 			if (syntax_error(data))
 			{
+				// display_token_lexer(data->lexer_list);
 				perror("syntax error");
 				continue;
 			}
+			// display_token_lexer(data->lexer_list);
 			parser(data->lexer_list,data->command);
-			// display_token(data->command->file);
 			
 			// display_token(data->lexer_list);
 			// display_token_command(data->command);

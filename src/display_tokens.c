@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 23:55:12 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/08 18:40:08 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/09 00:18:48 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,16 @@ char	*get_token(t_tokens token)
 	return ("A");
 }
 
-// void	display_token(t_lexer *lexer)
-// {
-// 	// t_lexer *temp;
-// 	// temp = lexer;
-// 	while (lexer)
-// 	{
-// 		printf("value (%s) \t key (%s)\n", lexer->str,get_token(lexer->tokens));
-// 		lexer = lexer->next;
-// 	}
-// }
+void	display_token_lexer(t_lexer *lexer)
+{
+	// t_lexer *temp;
+	// temp = lexer;
+	while (lexer)
+	{
+		printf("value (%s) \t key (%s)\n", lexer->str,get_token(lexer->tokens));
+		lexer = lexer->next;
+	}
+}
 // void	display_token_command(t_command *lexer)
 // {
 // 	// t_lexer *temp;
@@ -53,14 +53,14 @@ char	*get_token(t_tokens token)
 // 		lexer = lexer->next;
 // 	}
 // }
-void	display_token(t_file *file)
-{
-	while (file)
-	{
-		printf("file_name : (%s) \tfile_type(%s)\n",file->file_name,get_token(file->file_type));
-		file = file->next;
-	}
-}
+// void	display_token(t_file *file)
+// {
+// 	while (file)
+// 	{
+// 		printf("file_name : (%s) \tfile_type(%s)\n",file->file_name,get_token(file->file_type));
+// 		file = file->next;
+// 	}
+// }
 
 // void display_token_command(t_command *command,t_file *file)
 // {
@@ -108,15 +108,16 @@ void display_token_command(t_command *command,  t_file *file )
                 while (command->cmd[i])
                 {
                     printf("\tcontent[%d]: %s\n", i + 1, command->cmd[i]);
-                    while (command->file)
-                    {
-            	        printf("\tfile name: %s \tfile type: %s\n", command->file->file_name,get_token(command->file->file_type));   
-                        // printf("\tfile type: %s\n", get_token(command->file->file_type));
-                        command->file = command->file->next;
-                    }
             	    // file = file->next;
                     i++;
+             
                 }
+            }
+            while (command->file)
+            {
+                printf("\tfile name: %s \tfile type: %s\n", command->file->file_name,get_token(command->file->file_type));   
+                // printf("\tfile type: %s\n", get_token(command->file->file_type));
+                command->file = command->file->next;
             }
             node++;
             command = command->next;

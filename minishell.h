@@ -98,6 +98,7 @@ void					command_line(char **command, t_list **head);
 void					loop_minishell(t_tool *data);
 //////////////////////lexer//////////////////////////
 void					lexer(t_tool *data);
+void	display_token_lexer(t_lexer *lexer);
 // void add_node(t_lexer **head, int type,char *str);
 void					add_node(t_lexer **head, t_tokens type, char *str);
 // void				display_token(t_lexer *lexer);
