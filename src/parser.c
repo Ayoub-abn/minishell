@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:21:56 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/07 20:30:01 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/08 15:46:39 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,24 +77,18 @@ void	handel_token(t_lexer **head, t_file **file, t_tokens type)
 		(*head) = (*head)->next;
 	}
 	add_node_file(file, file_name, type);
-	free(file_name);
+	// free(file_name);
 }
 
 void	parser(t_lexer *data,t_command *command_list)
 {
 	t_lexer		*head;
 	char		*command;
-	// t_command	*command_list;
 
 	command = NULL;
 	head = data;
-	// command_list = malloc(sizeof(t_command));
 	command_list = NULL;
-	// command_list->file = NULL;
-	// t_file		*file;
 	t_file		*file;
-	// file = command_list->file;
-	// file = malloc(sizeof(t_file));
 	file = NULL;
 	
 	
@@ -130,8 +124,11 @@ void	parser(t_lexer *data,t_command *command_list)
 		}
 		add_node_command(&command_list, command);
 		command = NULL;
+		file = NULL;
 		if (head && head->tokens == PIPE)
+		{
 			head = head->next;
+		}
 		// printf("%s\n",command);
 	}
 	display_token_command(command_list,file);
