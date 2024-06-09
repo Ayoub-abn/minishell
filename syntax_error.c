@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 15:21:27 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/09 00:44:44 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/09 17:36:35 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,23 @@
 
 int check_quotes(t_lexer *head)
 {
+    char quotes;
 	while (head)
 	{
-		if(head->str[0] == '"')
-		{
-			if(ft_strlen(head->str) == 1 || head->str[ft_strlen(head->str)				- 1] != '"')
+        if(head->str[0] == '"' || head->str[0] == '\'')
+        {
+            quotes = head->str[0];
+            //if str = ' or "               if last world is not " or ' 
+            if(ft_strlen(head->str) == 1 || head->str[ft_strlen(head->str)- 1] != quotes)
 				return(1);
-		}
-		if(head->str[0] == '\'')
-		{
-			if(ft_strlen(head->str) == 1 || head->str[ft_strlen(head->str)		- 1] != '\'')
-				return(1);
-		}
+        }
 		head = head->next;
 	}
 	return(0);
 }
 int unexpected_token(t_lexer *head)
 {
-    // Loop until we find a non-word and non-whitespace token
+    // Loop until we find a (< ,<< ,> ,>> ,|)
     while (head)
     {
         if (head->tokens != WORD && head->tokens != WHITESPACE)
