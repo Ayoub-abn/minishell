@@ -55,9 +55,7 @@ void	add_node_file(t_file **head, char *file_name, t_tokens type)
 // void	add_node_command(t_command **head, char *command)
 void	add_node_command(t_command **head,t_file **file_head, char *command)
 {
-		t_command	*node;
-		// (void)head;
-		// (void)file_head;
+	t_command	*node;
 	// int i = 0;
 	// printf("%s\n",remove_quotes(command));
 	// node = ft_command_new(remove_quotes(command),(*file_head));

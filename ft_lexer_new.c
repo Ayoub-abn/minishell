@@ -59,7 +59,7 @@ t_command	*ft_command_new(char *command ,t_file *file)
 	i = 0;
 	while (command_arg[i])
 	{
-		new_node->cmd[i] = /* remove_quotes( */ command_arg[i]/* ) */;
+		new_node->cmd[i] = remove_quotes(  command_arg[i] ) ;
 		i++;
 	}
 	new_node->cmd[i] = NULL;
