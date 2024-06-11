@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:21:56 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/08 18:57:01 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/09 19:39:58 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	add_node_command(t_command **head,t_file **file_head, char *command)
 		// (void)file_head;
 	// int i = 0;
 	// printf("%s\n",remove_quotes(command));
+	// node = ft_command_new(remove_quotes(command),(*file_head));
 	node = ft_command_new(command,(*file_head));
 	ft_lstadd_back_command(head, node);
 	// display_token_command((*head));
