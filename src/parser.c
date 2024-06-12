@@ -85,9 +85,6 @@ void	handel_token(t_lexer **head, t_file **file, t_tokens type)
 	}
 	// add_node_file(file, file_name, type);
 	node = ft_file_new(file_name, type);
-	// printf("%s\n",node->file_name);
-	// printf("%d\n",node->file_type);
-	// free(file_name);
 }
 
 void	parser(t_lexer *data, t_command *command_list)
@@ -209,9 +206,7 @@ void	parser(t_lexer *data, t_command *command_list)
 		command = NULL;
 		file = NULL;
 		if (head && head->tokens == PIPE)
-		{
 			head = head->next;
-		}
 	}
 	display_token_command(command_list, file);
 }
