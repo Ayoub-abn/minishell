@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 23:55:12 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/09 00:18:48 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:55:50 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void	display_token_lexer(t_lexer *lexer)
 //         command = command->next;
 //     }
 // }
+//
 void display_token_command(t_command *command,  t_file *file )
 {
     // t_file *current_file = file;
@@ -122,26 +123,7 @@ void display_token_command(t_command *command,  t_file *file )
             node++;
             command = command->next;
         }
-    // }
-    // else
-    // {
-    //     printf("\tNo commands present\n");
-    // }
 
-    // if (file)
-    // {
-        // while (file)
-        // {
-        //     printf("\tfile type: %s\n", get_token(file->file_type));
-        //     // Uncomment the following line if you need to display the file name as well
-        //     printf("\tfile name: %s\n", file->file_name);
-        //     file = file->next;
-        // }
-    // }
-    // else
-    // {
-    //     printf("\tNo files associated\n");
-    // }
 }
 
 

@@ -6,11 +6,31 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 15:21:27 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/09 17:36:35 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/13 18:48:05 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int error(t_tokens error ,char error_char)
+{
+    if(error == QUOTES)
+    {
+        printf("bash: unexpected EOF while looking for matching `%c'\n",error_char);
+        printf("bash: syntax error: unexpected end of file\n");
+    }
+    else if (error == PIPE && error_char == 'u')
+    {
+        printf("bash: syntax error: unexpected end of file\n");
+        // exit(2);
+    }
+    else if (error == REDIR_IN)
+        printf("bash: syntax error near unexpected token `newline'\n");
+    else if(error == PIPE)
+        printf("bash: syntax error near unexpected token `%c'\n",error_char);
+    
+    return(1);
+}
 
 int check_quotes(t_lexer *head)
 {
@@ -22,7 +42,7 @@ int check_quotes(t_lexer *head)
             quotes = head->str[0];
             //if str = ' or "               if last world is not " or ' 
             if(ft_strlen(head->str) == 1 || head->str[ft_strlen(head->str)- 1] != quotes)
-				return(1);
+				return(error(QUOTES,quotes));
         }
 		head = head->next;
 	}
@@ -47,7 +67,7 @@ int unexpected_token(t_lexer *head)
     {
         // A pipe cannot be the last token
         if (head->next == NULL)
-            return 1;
+            return(error(PIPE,'u'));
         
         // Skip any whitespace immediately following the pipe
         if (head->next->tokens == WHITESPACE)
@@ -55,18 +75,18 @@ int unexpected_token(t_lexer *head)
         
         // A pipe cannot be followed only by whitespace
         if (head->next == NULL)
-            return 1;
+            return(error(PIPE,'u'));
         
         // Ensure the token after whitespace (if any) is not a pipe
         if (head->next->tokens == PIPE)
-            return 1;
+            return(error(PIPE,'u'));
     }
     // Handle the case for other special tokens
     else if (head->tokens != PIPE)
     {
         // Any other special token must be followed by a non-whitespace word
         if (head->next == NULL)
-            return 1;
+            return (error(REDIR_IN,'n'));
         
         // Skip any whitespace immediately following the special token
         if (head->next->tokens == WHITESPACE)
@@ -74,7 +94,16 @@ int unexpected_token(t_lexer *head)
         
         // Ensure the token after whitespace (if any) is a word
         if (head->next == NULL || head->next->tokens != WORD)
-            return 1;
+        {
+            if(head->next == NULL)
+                return 1;
+            if (head->next->tokens == PIPE )
+            {
+            // mazl lkhedma hena
+                return(error(PIPE,'|'));
+            }
+            
+        }
     }
     
     // If all checks pass, there is no unexpected token
@@ -95,7 +124,7 @@ int	syntax_error(t_tool *data)
 		return(1);
 	//if the first node is pipe
 	if(head->tokens == PIPE)
-		return(1);
+		return(error(PIPE,'|'));
 	//Check other items
 	while (head)
 	{

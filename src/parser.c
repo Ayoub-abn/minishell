@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:21:56 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/09 19:39:58 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:56:26 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,7 @@ void	add_node_file(t_file **head, char *file_name, t_tokens type)
 
 	node = ft_file_new(file_name, type);
 	ft_lstadd_back_file(head, node);
-	// display_token((*head));
 }
-// void	add_node_command(t_command **head, char *command)
 void	add_node_command(t_command **head,t_file **file_head, char *command)
 {
 	t_command	*node;

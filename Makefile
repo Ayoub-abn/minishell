@@ -19,6 +19,7 @@ LIBFT_SRC = ./libft/ft_atoi.c       ./libft/ft_bzero.c \
  			./libft/ft_putendl_fd.c ./libft/ft_putnbr_fd.c \
  			./libft/ft_strmapi.c    ./libft/ft_striteri.c \
  			./libft/ft_itoa.c       ./libft/ft_split.c\
+			./libft/ft_split_for_equal.c \
 			ft_lexer_new.c 		ft_lstsize_bonus.c ft_lstlast_bonus.c \
 	   		ft_lstadd_back_bonus.c 	ft_lstadd_front_bonus.c\
 			
@@ -27,8 +28,9 @@ LIBFT_SRC = ./libft/ft_atoi.c       ./libft/ft_bzero.c \
 
 LIXER = src/lexer.c src/display_tokens.c syntax_error.c
 PARSRE = src/parser.c 
+EXPAND = src/expand.c
 
-SRC = main.c loop_minishell.c init.c ${LIBFT_SRC} ${LIXER} ${PARSRE}
+SRC = main.c loop_minishell.c init.c ${LIBFT_SRC} ${LIXER} ${PARSRE} ${EXPAND}
 
 OBG = ${SRC:.c=.o}
 

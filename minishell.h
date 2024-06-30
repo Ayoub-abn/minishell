@@ -43,6 +43,7 @@ typedef enum e_num
 	HEREDOC,
 	APPEND,
 	WHITESPACE,
+	QUOTES
 }						t_tokens;
 
 typedef struct s_lexer
@@ -54,7 +55,15 @@ typedef struct s_lexer
 	struct s_lexer		*next;
 	// struct s_lexer	*prev;
 }						t_lexer;
+typedef struct s_env
+{
+	char *key;
+	char *value;
+	struct s_env *next;
+}						t_env;
 
+
+///////////////////execute////////////
 typedef struct s_file
 {
 	char				*file_name;
@@ -69,13 +78,16 @@ typedef struct s_command
 	t_file				*file;
 	struct s_command	*next;
 }						t_command;
+////////////////////////////////////////////
+
 
 typedef struct s_tool
 {
 	char				*cmd;
-	char				**env;
+	char				**env_copy;
 	t_lexer				*lexer_list;
 	t_command			*command;
+	t_env				*env;
 }						t_tool;
 
 ////////////////////list//////////////
@@ -95,7 +107,8 @@ void					ft_lstadd_back(t_lexer **lst, t_lexer *new);
 
 char					**array_cpy(char **env);
 void					command_line(char **command, t_list **head);
-void					loop_minishell(t_tool *data);
+// void					loop_minishell(t_tool *data);
+void					loop_minishell(t_tool *data,char **env);
 //////////////////////lexer//////////////////////////
 void					lexer(t_tool *data);
 void	display_token_lexer(t_lexer *lexer);
@@ -120,4 +133,21 @@ void					ft_lstadd_back_file(t_file **lst, t_file *new);
 char					*get_token(t_tokens token);
 // void	display_token_command(t_command *command);
 void	display_token_command(t_command *command,t_file *file);
+//////////////////////////////expand//////////////////////
+
+void expand(char **env);
+// void expand(t_tool *data);
+t_env *ft_env_new(char *key,char *value);
+void	ft_lstadd_back_env(t_env **lst, t_env *new);
+void aff(t_env *data);
+
+
+
+
+
+
+
+
+
+
 #endif

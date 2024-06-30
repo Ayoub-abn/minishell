@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 22:19:58 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/09 19:31:39 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/28 22:40:43 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ t_lexer	*ft_lexer_new(char *str,t_tokens type)
 		return (NULL);
 	new_node->str = str;
 	new_node->tokens = type;
-	// new_node->i = i++;
 	new_node->next = NULL;
 	// new_node->prev = NULL;
 	return (new_node);
@@ -66,4 +65,18 @@ t_command	*ft_command_new(char *command ,t_file *file)
 	new_node->file = file;
 	new_node->next = NULL;
 	return (new_node);
+}
+
+
+t_env *ft_env_new(char *key,char *value)
+{
+	t_env	*new_node;
+
+	new_node = malloc(sizeof(t_env));
+	if (new_node == NULL)
+		return (NULL);
+	new_node->key = key;
+	new_node->value = value;
+	new_node->next = NULL;
+	return(new_node);
 }
