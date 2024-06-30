@@ -1,13 +1,12 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: merrahal <merrahal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 21:11:39 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/05/31 20:42:28 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/30 16:26:37 by merrahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +61,18 @@ typedef struct s_file
 	struct s_file		*next;
 }						t_file;
 
+//mossab's part
+typedef struct s_env
+{
+	char *key;
+	char *value;
+	struct s_env *next;
+}t_env;
+
 typedef struct s_command
 {
 	// char			*cmd;
-	char				**cmd /*[0] =>command | [0 + 1] =>arg command*/;
+	char				**cmd;
 	t_file				*file;
 	struct s_command	*next;
 }						t_command;
@@ -77,6 +84,7 @@ typedef struct s_tool
 	t_lexer				*lexer_list;
 	t_command			*command;
 }						t_tool;
+//end
 
 ////////////////////list//////////////
 void					ft_lstadd_front(t_list **lst, t_list *new);
