@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 21:58:05 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/29 22:41:49 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/30 17:05:52 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,13 @@ int	main(int ac, char **av, char **env)
 		exit(0);
 	}
 	// tools.env_copy = array_cpy(env);
-	// int i = 0;
-
-	// while (tools.env[i])
-	// {
-	// 	printf("%s\n",tools.env[i++]);
-	// }
-	
-	loop_minishell(&tools,env);
+	/* t_env *list =  */
+	envp_to_list(env);
+  /*   while (list)
+    {
+        printf("key = %s\n", list->key);
+        printf("value = %s\n", list->value);
+        list = list->next;
+    } */
+	loop_minishell(&tools);
 }

@@ -107,8 +107,8 @@ void					ft_lstadd_back(t_lexer **lst, t_lexer *new);
 
 char					**array_cpy(char **env);
 void					command_line(char **command, t_list **head);
-// void					loop_minishell(t_tool *data);
-void					loop_minishell(t_tool *data,char **env);
+void					loop_minishell(t_tool *data);
+// void					loop_minishell(t_tool *data,char **env);
 //////////////////////lexer//////////////////////////
 void					lexer(t_tool *data);
 void	display_token_lexer(t_lexer *lexer);
@@ -135,6 +135,7 @@ char					*get_token(t_tokens token);
 void	display_token_command(t_command *command,t_file *file);
 //////////////////////////////expand//////////////////////
 
+t_env	*envp_to_list(char **envp);
 void expand(char **env);
 // void expand(t_tool *data);
 t_env *ft_env_new(char *key,char *value);
