@@ -19,7 +19,7 @@ LIBFT_SRC = ./libft/ft_atoi.c       ./libft/ft_bzero.c \
  			./libft/ft_putendl_fd.c ./libft/ft_putnbr_fd.c \
  			./libft/ft_strmapi.c    ./libft/ft_striteri.c \
  			./libft/ft_itoa.c       ./libft/ft_split.c\
-			./libft/ft_split_for_equal.c \
+			./libft/ft_strcmp.c ./libft/ft_split_for_equal.c\
 			ft_lexer_new.c 		ft_lstsize_bonus.c ft_lstlast_bonus.c \
 	   		ft_lstadd_back_bonus.c 	ft_lstadd_front_bonus.c\
 			

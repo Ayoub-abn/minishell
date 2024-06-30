@@ -20,6 +20,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+#include <stdbool.h>
+
 
 // #define WORD 1
 // #define PIPE 2
@@ -49,11 +51,9 @@ typedef enum e_num
 typedef struct s_lexer
 {
 	char				*str;
-	// int			type;
+	// bool				quote;
 	t_tokens			tokens;
-	// int			i;
 	struct s_lexer		*next;
-	// struct s_lexer	*prev;
 }						t_lexer;
 typedef struct s_env
 {
@@ -107,7 +107,8 @@ void					ft_lstadd_back(t_lexer **lst, t_lexer *new);
 
 char					**array_cpy(char **env);
 void					command_line(char **command, t_list **head);
-void					loop_minishell(t_tool *data);
+// void					loop_minishell(t_tool *data);
+void	loop_minishell(t_tool *data,t_env *env);
 // void					loop_minishell(t_tool *data,char **env);
 //////////////////////lexer//////////////////////////
 void					lexer(t_tool *data);
@@ -136,7 +137,8 @@ void	display_token_command(t_command *command,t_file *file);
 //////////////////////////////expand//////////////////////
 
 t_env	*envp_to_list(char **envp);
-void expand(char **env);
+// void expand(t_lexer *lexer);
+void expand(t_lexer *lexer,t_env *env);
 // void expand(t_tool *data);
 t_env *ft_env_new(char *key,char *value);
 void	ft_lstadd_back_env(t_env **lst, t_env *new);

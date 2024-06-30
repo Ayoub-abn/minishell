@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 18:10:04 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/04 23:38:14 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/30 18:11:09 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	is_string(t_tool *data, int i)
 	//handel single quotes
 	else if (data->cmd[i] == 34)
 	{
+		
 		i++;
         while (data->cmd[i] != '\0' && data->cmd[i] != 34)
             i++;
