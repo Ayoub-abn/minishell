@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 22:06:45 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/30 23:13:47 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/30 23:57:22 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 void	loop_minishell(t_tool *data,t_env *env)
 {
-	(void)data;
-	// // (void)env;
+	// (void)data;
+	// (void)env;
 	
 	while (1)
 	{

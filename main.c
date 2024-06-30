@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 21:58:05 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/30 22:35:01 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/06/30 23:55:40 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	main(int ac, char **av, char **env)
 {
-	(void)env;
 	t_tool	tools;
 	// t_list *head = NULL;
 	// ft_memset(&tools,0,sizeof(t_tool));

@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 21:50:49 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/30 23:38:50 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/01 00:52:25 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,21 @@
 
 #include "../minishell.h"
 
+char *semi_key(char *str) {
+    int i = 0;
+    i++;
+    int start = i;
+    while (str[i] && str[i] != '\'' && str[i] != '"' && str[i] != '\t' && str[i] != ' ' )
+        i++;
+    char *line  = ft_substr(str, start, i-1);
+    // if (line != NULL) {
+    //     printf("%s\n", line); // Print the result
+    // }
+    return line; 
+}
 void expand(t_lexer *lexer, t_env *env)
 {
+    (void)env;
     while (lexer)
     {
         if (lexer->tokens == WORD)
@@ -26,7 +39,9 @@ void expand(t_lexer *lexer, t_env *env)
                 continue;
             }
             else if(lexer->str[0] == '"') // if First character is "
-                lexer->str = remove_quotes(lexer->str);
+                lexer->str = semi_key(lexer->str);
+            // printf("%s\n",lexer->str);
+            
             if (lexer->str[0] == '$')
             {
                 int i = 1;
