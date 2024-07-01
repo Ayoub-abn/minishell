@@ -60,13 +60,15 @@ static void	add_back(t_env **head, t_env *new)
 	*head = new;
 }
 
-static t_env	*envp_to_list(char **envp)
+t_env	*envp_to_list(char **envp)
 {
 	int		i;
 	t_env	*list;
 
 	i = 0;
 	list = 0;
+	if(!envp || !*envp)
+		return NULL;
 	while (envp[i])
 	{
 		add_back(&list, new_node(envp[i]));
@@ -75,16 +77,54 @@ static t_env	*envp_to_list(char **envp)
 	return (list);
 }
 
+int	env_lstsize(t_env *lst)
+{
+	t_env	*p;
+	int		i;
+
+	i = 0;
+	p = lst;
+	while (p)
+	{
+		p = p->next;
+		i++;
+	}
+	return (i);
+}
+
+
+char **list_to_envp(t_env *list)
+{
+	char *tmp_key;
+	char **line;
+	int i = 0;
+
+	line = malloc(sizeof(char *) * env_lstsize(list) + 1);
+	while (list)
+	{
+		tmp_key = list->key;
+		tmp_key = ft_strjoin(tmp_key, "=");
+		line[i++] = ft_strjoin(tmp_key, list->value);
+		list = list->next;
+	}
+	line[i] = NULL;
+	return (line);
+}
+
 int main(int ac, char **av, char **envp)
 {
     (void) ac;
     (void) av;
     t_env *list = envp_to_list(envp);
-    while (list)
-    {
-        printf("key = %s\n", list->key);
-        printf("value = %s\n", list->value);
-        list = list->next;
-    }
-    
+	t_env *tmp_list = list;
+    // while (tmp_list)
+    // {
+    //     printf("key = %s", tmp_list->key);
+    //     printf(" value = %s\n", tmp_list->value);
+    //     tmp_list = tmp_list->next;
+    // }
+	char **env = list_to_envp(list);
+    int i = -1;
+	while (env[++i])
+        printf("%s\n", env[i]);
 }
