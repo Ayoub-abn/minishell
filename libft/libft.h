@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 18:47:08 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/30 22:17:37 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/01 22:55:52 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 int					ft_atoi(const char *str);
 size_t				ft_strlcat(char *dst, const char *src, size_t dstsize);
 char				**ft_split(char const *s, char c);
-char				**ft_split_for_equal(char const *s, char c);
+char				**ft_split_sp(char const *s, char *c);
 char				*ft_strtrim(char const *s1, char const *set);
 void				*ft_memmove(void *dst, const void *src, size_t len);
 void				ft_bzero(void *s, size_t n);
