@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 21:50:49 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/03 15:57:43 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/03 16:11:54 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char *to_expand(char *str) {
     while (str[i] && ft_isalpha(str[i]))
         i++;
     int end = i;
-    return ft_substr(str, start, end - start);
+    return (ft_substr(str, start, end - start));
 }
 
 // Function to expand variables in lexer tokens
