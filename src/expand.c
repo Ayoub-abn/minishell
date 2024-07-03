@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 21:50:49 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/03 20:04:31 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/03 20:41:31 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,18 @@ void expand(t_lexer *lexer, t_env *env)
         char *str_to_expand = NULL;
         // if (lexer->tokens == HEREDOC)
         // {
-        //     if (lexer->next && lexer->tokens == WHITESPACE)
+        //     if (/* lexer->next &&  */lexer->tokens == WHITESPACE)
         //         lexer = lexer->next; 
         //     lexer = lexer->next;
-        //     continue;
+        //     lexer = lexer->next;
+        //     lexer = lexer->next;
+            
+
+        //     printf("hi ==>%s\n",lexer->str);
+
+        //     // continue;
         // }
+        
         if(ft_strcmp(lexer->str,"$") == 0)
             lexer = lexer->next;
         if(!lexer)
