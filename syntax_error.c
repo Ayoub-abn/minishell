@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 15:21:27 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/13 18:48:05 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/04 00:36:08 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,8 @@ int unexpected_token(t_lexer *head)
 }
 
 // if fun return 1 ====>error 
+// l << space ==> error 
+
 int	syntax_error(t_tool *data)
 {
 	t_lexer	*head;

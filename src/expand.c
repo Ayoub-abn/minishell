@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 21:50:49 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/03 20:41:31 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/04 00:54:56 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,35 +37,44 @@ char *to_expand(char *str) {
 void expand(t_lexer *lexer, t_env *env) 
 {
     while (lexer) 
-    {
+    {   
+        // $"USER" => USER nadya 
+        // "$"USER"" => $USER
+
+        // if $a="ls -al'" => should [ls] [-al']
+        // $9HOME => HOME || $99HOME => 9HOME skip ony the first number
         int i = 0;
         char *str_to_expand = NULL;
-        // if (lexer->tokens == HEREDOC)
-        // {
-        //     if (/* lexer->next &&  */lexer->tokens == WHITESPACE)
-        //         lexer = lexer->next; 
-        //     lexer = lexer->next;
-        //     lexer = lexer->next;
-        //     lexer = lexer->next;
-            
-
-        //     printf("hi ==>%s\n",lexer->str);
-
-        //     // continue;
-        // }
+        if (lexer->tokens == HEREDOC)
+        {
+            //skip HEREDOC
+            lexer = lexer->next; 
+            //Check WHITESPACE
+            if (lexer->tokens == WHITESPACE)
+                lexer = lexer->next;
+            // Skip the word so it doesn't expand
+            if (lexer)
+                 lexer = lexer->next;
+            continue;
+        }
         
-        if(ft_strcmp(lexer->str,"$") == 0)
-            lexer = lexer->next;
-        if(!lexer)
-            break;
-        if (lexer->tokens == WORD && lexer->str[0] != '\'') 
+        if (lexer->tokens == WORD && lexer->str[i] != '\'') 
         {
             while (lexer->str[i]) 
             {
-                if(lexer->str[i] == '$' && lexer->str[i+1] == '$')//echo $$
-                    str_to_expand = ft_strjoin(str_to_expand, "$");
-                if (lexer->str[i] == '$') 
+                if(ft_strcmp(lexer->str,"$") == 0) // echo $
                 {
+                    str_to_expand = "$";
+                    break;
+                }
+                if(lexer->str[i] == '$' && lexer->str[i+1] == '$') //echo $$
+                {
+                    str_to_expand = ft_strjoin(str_to_expand, "$$");
+                    i += 2;
+                }
+                else if (lexer->str[i] == '$') 
+                {
+                        
                     char *key = to_expand(&lexer->str[i]);
                     char *value = get_env_value(env, key);
                     i += ft_strlen(key) + 1;
@@ -85,4 +94,5 @@ void expand(t_lexer *lexer, t_env *env)
         lexer = lexer->next;
     }
 }
+
 
