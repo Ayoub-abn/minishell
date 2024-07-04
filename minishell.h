@@ -51,7 +51,6 @@ typedef enum e_num
 typedef struct s_lexer
 {
 	char				*str;
-	// bool				quote;
 	t_tokens			tokens;
 	struct s_lexer		*next;
 }						t_lexer;
@@ -118,7 +117,7 @@ void					add_node(t_lexer **head, t_tokens type, char *str);
 // void				display_token(t_lexer *lexer);
 /////////////////////syntax_error///////////////////
 int						check_quotes(t_lexer *head);
-int						unexpected_token(t_lexer *head);
+// int						unexpected_token(t_lexer **head);
 int						syntax_error(t_tool *data);
 /////////////////////parser///////////////////////////
 // void					parser(t_tool *data);

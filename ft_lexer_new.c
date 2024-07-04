@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 22:19:58 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/28 22:40:43 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/04 21:08:16 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ t_command	*ft_command_new(char *command ,t_file *file)
 	int i = 0;
 	while (command_arg[i])
 		i++;
-	// printf("%d\n",i);
 	new_node = malloc(sizeof(t_command));
 	if (new_node == NULL)
 		return (NULL);

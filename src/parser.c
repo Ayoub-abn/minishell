@@ -6,11 +6,42 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:21:56 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/03 20:54:49 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/05 00:50:15 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+// char *remove_quotes(char *arg) {
+//     int i = 0;
+//     int j = 0;
+//     char quote_char;
+//     char *str;
+
+//     if (arg == NULL)
+//         return "";
+//     str = malloc(ft_strlen(arg) * (sizeof(char) + 1));
+//     if (!str)
+//         return NULL;
+    
+//     while (arg[i]) 
+//     {
+//                                             //hadi mzl ma mfhoma
+//         if ((arg[i] == '"' || arg[i] == '\'') && arg[i+1] != '\0') 
+//         {
+//             quote_char = arg[i];
+//             i++;
+//             while (arg[i] && arg[i] != quote_char)
+//                 str[j++] = arg[i++];
+//             if (arg[i])
+//                 i++;  // Skip the closing quote
+//         } else {
+//             str[j++] = arg[i++];
+//         }
+//     }
+//     str[j] = '\0';
+//     return str;
+// }
 
 char	*remove_quotes(char *arg)
 {
@@ -35,7 +66,7 @@ char	*remove_quotes(char *arg)
 			while (arg[i] && arg[i] != quote_char)
 				str[j++] = arg[i++];
 			if (arg[i])
-				i++; // Skip the closing quote
+				i++;  // Skip the closing quote
 		}
 		else
 			str[j++] = arg[i++];
@@ -54,12 +85,8 @@ void	add_node_file(t_file **head, char *file_name, t_tokens type)
 void	add_node_command(t_command **head,t_file **file_head, char *command)
 {
 	t_command	*node;
-	// int i = 0;
-	// printf("%s\n",remove_quotes(command));
-	// node = ft_command_new(remove_quotes(command),(*file_head));
 	node = ft_command_new(command,(*file_head));
 	ft_lstadd_back_command(head, node);
-	// display_token_command((*head));
 }
 void	handel_token(t_lexer **head, t_file **file, t_tokens type)
 {
@@ -84,132 +111,6 @@ void	handel_token(t_lexer **head, t_file **file, t_tokens type)
 	// add_node_file(file, file_name, type);
 	node = ft_file_new(file_name, type);
 }
-
-// t_command	*parser(t_lexer *data)
-// {
-// 	t_lexer	*head;
-// 	char	*command;
-// 	t_file	*file;
-// 	char *file_name;
-// 	t_file *node;
-
-// 	command = NULL;
-// 	head = data;
-// 	t_command *command_list = NULL;
-// 	file = NULL;
-// 	while (head)
-// 	{
-// 		while (head && head->tokens != PIPE)
-// 		{
-// 			if (head->tokens == WORD)
-// 			{
-// 				while (head && head->tokens == WORD)
-// 				{
-// 					//katlas9 string lia khano hada b3dyathom
-// 					command = ft_strjoin(command, head->str);
-// 					if (head->next && head->next->tokens == WHITESPACE)
-// 						command = ft_strjoin(command, " ");
-// 					head = head->next;
-// 				}
-// 			}
-// 			else if (head->tokens != WORD)
-// 			{
-// 				if (head->tokens == REDIR_IN)
-// 				{
-// 					file_name = NULL;
-// 					if (head->next && head->next->tokens == WHITESPACE)
-// 						head = head->next;
-// 					head = head->next;
-// 					while (head && head->tokens == WORD)
-// 					{
-// 						// Skip any whitespace within the file name
-// 						if (head->tokens == WHITESPACE)
-// 							break ;
-// 						// Append the current token's string to file_name
-// 						file_name = ft_strjoin(file_name, head->str);
-// 						// Move to the next token
-// 						head = head->next;
-// 					}
-// 					node = ft_file_new(remove_quotes(file_name), REDIR_IN);
-// 					ft_lstadd_back_file(&file, node);
-// 				}
-// 				else if (head->tokens == REDIR_OUT)
-// 				{
-// 					file_name = NULL;
-// 					if (head->next && head->next->tokens == WHITESPACE)
-// 						head = head->next;
-// 					head = head->next;
-// 					while (head && head->tokens == WORD)
-// 					{
-// 						// Skip any whitespace within the file name
-// 						if (head->tokens == WHITESPACE)
-// 							break ;
-// 						// Append the current token's string to file_name
-// 						file_name = ft_strjoin(file_name, head->str);
-// 						// Move to the next token
-// 						head = head->next;
-// 					}
-// 					node = ft_file_new(remove_quotes(file_name), REDIR_OUT);
-// 					ft_lstadd_back_file(&file, node);
-// 				}
-// 				else if (head->tokens == HEREDOC)
-// 				{
-// 					file_name = NULL;
-// 					if (head->next && head->next->tokens == WHITESPACE)
-// 						head = head->next;
-// 					head = head->next;
-// 					while (head && head->tokens == WORD)
-// 					{
-// 						// Skip any whitespace within the file name
-// 						if (head->tokens == WHITESPACE)
-// 							break ;
-// 						// Append the current token's string to file_name
-// 						file_name = ft_strjoin(file_name, head->str);
-// 						// Move to the next token
-// 						head = head->next;
-// 					}
-// 					node = ft_file_new(remove_quotes(file_name), HEREDOC);
-// 					ft_lstadd_back_file(&file, node);
-// 				}
-// 				else if (head->tokens == APPEND)
-// 				{
-// 					file_name = NULL;
-// 					if (head->next && head->next->tokens == WHITESPACE)
-// 						head = head->next;
-// 					head = head->next;
-// 					while (head && head->tokens == WORD)
-// 					{
-// 						// Skip any whitespace within the file name
-// 						if (head->tokens == WHITESPACE)
-// 							break ;
-// 						// Append the current token's string to file_name
-// 						file_name = ft_strjoin(file_name, head->str);
-// 						// Move to the next token
-// 						head = head->next;
-// 					}
-// 					node = ft_file_new(remove_quotes(file_name), APPEND);
-// 					ft_lstadd_back_file(&file, node);
-// 				}
-// 				// if (head->tokens == REDIR_IN || head->tokens == REDIR_OUT ||
-// 				// 	head->tokens == HEREDOC || head->tokens == APPEND)
-// 				// {
-// 				// 	handel_token(&head, &file, head->tokens);
-// 				// 	// handel_token(&head, &command_list->file, head->tokens);
-// 				// }
-// 				else
-// 					head = head->next;
-// 			}
-// 		}
-// 		// add_node_command(&command_list, command);
-// 		add_node_command(&command_list,&file ,command);
-// 		command = NULL;
-// 		file = NULL;
-// 		if (head && head->tokens == PIPE)
-// 			head = head->next;
-// 	}
-// 	display_token_command(command_list, file);
-// 	return(command_list);
-// }
 void handle_redirection(t_lexer **head, t_file **file, int token_type)
 {
     char *file_name = NULL;

@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 21:50:49 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/04 00:54:56 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/05 00:56:49 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,9 @@ void expand(t_lexer *lexer, t_env *env)
 {
     while (lexer) 
     {   
-        // $"USER" => USER nadya 
-        // "$"USER"" => $USER
-
         // if $a="ls -al'" => should [ls] [-al']
-        // $9HOME => HOME || $99HOME => 9HOME skip ony the first number
+        // echo $=HOME ==> $HOME
+        // $"USER" ==> USER
         int i = 0;
         char *str_to_expand = NULL;
         if (lexer->tokens == HEREDOC)
@@ -67,14 +65,17 @@ void expand(t_lexer *lexer, t_env *env)
                     str_to_expand = "$";
                     break;
                 }
-                if(lexer->str[i] == '$' && lexer->str[i+1] == '$') //echo $$
+                else if(lexer->str[i] == '$' && lexer->str[i+1] == '$') //echo $$
                 {
                     str_to_expand = ft_strjoin(str_to_expand, "$$");
                     i += 2;
                 }
+                else if(lexer->str[i] == '$' && (lexer->str[i+1] == '"' || lexer->str[i+1] == '\'')) //"$'USER'" ==> $'USER' || "$"USER"" ==> $"USER"
+                    str_to_expand = ft_strjoin(str_to_expand, "$");
+                else if(lexer->str[i] == '$' && !ft_isalpha(lexer->str[i+1])) // $9HOME => HOME || $99HOME => 9HOME skip ony the first number
+                    i+=2;//skip $ and num
                 else if (lexer->str[i] == '$') 
                 {
-                        
                     char *key = to_expand(&lexer->str[i]);
                     char *value = get_env_value(env, key);
                     i += ft_strlen(key) + 1;
@@ -82,7 +83,7 @@ void expand(t_lexer *lexer, t_env *env)
                         str_to_expand = ft_strjoin(str_to_expand, value);
                     free(key);
                 }
-                 else
+                 else // mzl mafahmha 
                 {
                     char temp[2] = { lexer->str[i], '\0' };
                     str_to_expand = ft_strjoin(str_to_expand, temp);
@@ -94,5 +95,4 @@ void expand(t_lexer *lexer, t_env *env)
         lexer = lexer->next;
     }
 }
-
 

@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 15:21:27 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/04 00:36:08 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/05 00:28:39 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,22 +96,27 @@ int unexpected_token(t_lexer *head)
         if (head->next == NULL || head->next->tokens != WORD)
         {
             if(head->next == NULL)
-                return 1;
-            if (head->next->tokens == PIPE )
+                return(error(PIPE,'|'));
+
+            else if (head->next->tokens == WHITESPACE )
             {
+                head = head->next;
+                if(head->next == NULL)
+                    return(error(REDIR_IN,'|'));
+            }
+            else if (head->next->tokens == PIPE )
             // mazl lkhedma hena
                 return(error(PIPE,'|'));
-            }
-            
         }
+            
     }
-    
     // If all checks pass, there is no unexpected token
     return 0;
 }
 
 // if fun return 1 ====>error 
 // l << space ==> error 
+// ls | ==>exit
 
 int	syntax_error(t_tool *data)
 {
