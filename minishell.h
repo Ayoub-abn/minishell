@@ -143,6 +143,11 @@ void expand(t_lexer *lexer,t_env *env);
 t_env *ft_env_new(char *key,char *value);
 void	ft_lstadd_back_env(t_env **lst, t_env *new);
 void aff(t_env *data);
+///////////////////////////////free///////////////////////
+
+void	free_link_list(t_lexer **list);
+void	free_link_list_parser(t_command **list);
+void	free_link_list_env(t_env **list);
 
 
 

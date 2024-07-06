@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 18:10:04 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/30 18:11:09 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/06 23:28:19 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int	is_string(t_tool *data, int i)
     end = i;
     line = ft_substr(data->cmd, start, end - start);
     add_node(&data->lexer_list, WORD, line);
+	// free(line);
 	return (i);
 }
 
@@ -69,10 +70,10 @@ void	lexer(t_tool *data)
 {
 	int		i;
 
-	data->lexer_list = malloc(sizeof(t_lexer));
+	data->lexer_list = NULL;/* = malloc(sizeof(t_lexer));
 	if (!data->lexer_list)
-		return ;
-	data->lexer_list = NULL;
+		return ; */
+	// data->lexer_list = NULL;
 	i = 0;
 	while (data->cmd[i])
 	{

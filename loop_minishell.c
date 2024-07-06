@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 22:06:45 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/06 00:09:55 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/07 00:14:52 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 void	loop_minishell(t_tool *data,t_env *env)
 {
 	// (void)data;
-	(void)env;
+	// (void)env;
+	t_command *command_list;
 	
 	while (1)
 	{
@@ -26,14 +27,22 @@ void	loop_minishell(t_tool *data,t_env *env)
 			add_history(data->cmd);
 			lexer(data);
 			if (syntax_error(data))
+			{
+				free_link_list(&data->lexer_list);
 				continue;
+			}
 			expand(data->lexer_list,env);
 			// display_token_lexer(data->lexer_list);
-			/* t_command *command_list =  */parser(data->lexer_list);
+			command_list = parser(data->lexer_list);
 			
 		}
 		else if(!data->cmd)
+		{
+			// free_link_list_parser(&command_list);
+			// free_link_list(&data->lexer_list);
+			// free_link_list_env(&env);
 			break;
+		}
 	}
 	// 	// printf("%s\n", data->cmd);
 	// 	//handle signal dyal ctrl+D
