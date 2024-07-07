@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 21:50:49 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/07 19:18:30 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/08 00:45:27 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,10 @@ void expand(t_lexer *lexer, t_env *env)
                 }
                 else if(lexer->str[i] == '$' && ft_isdigit(lexer->str[i+1])) // $9HOME => HOME || $99HOME => 9HOME skip ony the first number
                      i+=2;//skip $ and num
-                //////////////////////////////////////////////////////////////////  
-                else if (lexer->str[i] == '$' && !ft_isalpha(lexer->str[i+1]))
+                else if (lexer->str[i] == '$' && !ft_isalpha(lexer->str[i+1]))//echo $=HOME ==> $HOME
                 {
-                //    if (!lexer->next)
-                //         break;
-                //     lexer = lexer->next;
-                //     if (!lexer)
-                //         break;
-
+                    str_to_expand = ft_strjoin(str_to_expand,lexer->str);
+                    break;
                 }
                     
                 else if (lexer->str[i] == '$') 

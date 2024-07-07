@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 15:21:27 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/05 00:28:39 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/08 00:39:59 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,10 @@ int unexpected_token(t_lexer *head)
         {
             if(head->next == NULL)
                 return(error(PIPE,'|'));
+            // if(head->tokens == HEREDOC && (head->next->tokens==HEREDOC || head->next->tokens==REDIR_IN ))
+            // {
+            //     printf("HI\n")
+            // }
 
             else if (head->next->tokens == WHITESPACE )
             {
@@ -115,7 +119,6 @@ int unexpected_token(t_lexer *head)
 }
 
 // if fun return 1 ====>error 
-// l << space ==> error 
 // ls | ==>exit
 
 int	syntax_error(t_tool *data)
