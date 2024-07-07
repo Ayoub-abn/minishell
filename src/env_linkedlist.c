@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 18:19:23 by merrahal          #+#    #+#             */
-/*   Updated: 2024/07/06 19:02:51 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/07 17:28:45 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ static t_env	*new_node(char *envp_line)
 	lst->key = key;
 	value = ft_substr(envp_line, search_in(envp_line, '=') + 1, ft_strlen(envp_line));
 	lst->value = value;
-	free(value);
-	free(key); 
+	// free(value);
+	// free(key); 
 	lst->next = NULL;
 	return (lst);
 }
