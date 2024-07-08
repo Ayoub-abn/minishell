@@ -1,38 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   error_exit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 13:33:23 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/08 20:47:27 by aabdenou         ###   ########.fr       */
+/*   Created: 2024/07/08 20:12:06 by aabdenou          #+#    #+#             */
+/*   Updated: 2024/07/08 20:12:25 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-char	*ft_strjoin(char *s1, char *s2)
+void    error_exit(int status, char *str)
 {
-	size_t	i;
-	size_t	j;
-	char	*str;
-
-	i = 0;
-	j = 0;
-	
-	if (!s1)
-		return (ft_strdup(s2));
-	str = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	gc_push(str);
-	while (s1[i])
-	{
-		str[i] = s1[i];
-		i++;
-	}
-	while (s2[j])
-		str[i++] = s2[j++];
-	str[i] = '\0';
-	// free(s1);
-	return (str);
+    if (str)
+        perror(str);
+    _free();
+    exit(status);
 }

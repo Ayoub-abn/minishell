@@ -15,6 +15,7 @@
 # define MINI_SHELL_H
 
 # include "./libft/libft.h"
+#include "gc.h"
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <stdio.h>
@@ -79,7 +80,6 @@ typedef struct s_command
 }						t_command;
 ////////////////////////////////////////////
 
-
 typedef struct s_tool
 {
 	char				*cmd;
@@ -88,6 +88,7 @@ typedef struct s_tool
 	t_command			*command;
 	t_env				*env;
 }						t_tool;
+
 
 ////////////////////list//////////////
 void					ft_lstadd_front(t_list **lst, t_list *new);
@@ -148,13 +149,6 @@ void aff(t_env *data);
 void	free_link_list(t_lexer **list);
 void	free_link_list_parser(t_command **list);
 void	free_link_list_env(t_env **list);
-
-
-
-
-
-
-
 
 
 

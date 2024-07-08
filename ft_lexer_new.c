@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 22:19:58 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/06 23:08:40 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/08 20:35:14 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ t_lexer	*ft_lexer_new(char *str,t_tokens type)
 	// static int i; 
 
 	new_node = malloc(sizeof(t_lexer));
-	if (new_node == NULL)
-		return (NULL);
+	gc_push(new_node);
 	new_node->str = str;
 	new_node->tokens = type;
 	new_node->next = NULL;
@@ -31,8 +30,7 @@ t_file	*ft_file_new(char *file_name,t_tokens type)
 	t_file	*new_node;
 
 	new_node = malloc(sizeof(t_file));
-	if (new_node == NULL)
-		return (NULL);
+	gc_push(new_node);
 	new_node->file_name = file_name;
 	new_node->file_type = type;
 	new_node->next = NULL;
@@ -49,21 +47,19 @@ t_command	*ft_command_new(char *command ,t_file *file)
 	while (command_arg[i])
 		i++;
 	new_node = malloc(sizeof(t_command));
-	if (new_node == NULL)
-		return (NULL);
+	gc_push(new_node);
 	new_node->cmd = malloc(sizeof(char *) * (i + 1));
-	if (!new_node->cmd)
-		return (NULL);
+	gc_push(new_node->cmd);
 	i = 0;
 	while (command_arg[i])
 	{
 		new_node->cmd[i] = remove_quotes(command_arg[i]) ;
 		i++;
 	}
-	i = 0;
-	while (command_arg[i])
-		free(command_arg[i++]);
-	free(command_arg);
+	// i = 0;
+	// while (command_arg[i])
+	// 	free(command_arg[i++]);
+	// free(command_arg);
 	
 	new_node->cmd[i] = NULL;
 	new_node->file = file;
@@ -77,8 +73,7 @@ t_env *ft_env_new(char *key,char *value)
 	t_env	*new_node;
 
 	new_node = malloc(sizeof(t_env));
-	if (new_node == NULL)
-		return (NULL);
+	gc_push(new_node);
 	new_node->key = key;
 	new_node->value = value;
 	new_node->next = NULL;

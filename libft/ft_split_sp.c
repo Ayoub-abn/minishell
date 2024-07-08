@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 22:54:44 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/01 23:58:05 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/08 20:21:22 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static int    is_allocation_safe(char **allocatedArray, int position,
 
     i = 0;
     allocatedArray[position] = (char *)malloc(sizeof(char) * word_len);
-    // gc_push(allocatedArray[position]);
+    gc_push(allocatedArray[position]);
     return (1);
 }
 
@@ -95,7 +95,7 @@ char    **ft_split_sp(char const *s, char *c)
     }
     words = ft_countwords((char *)s, c);
     splited = (char **)malloc((words + 1) * sizeof(char *));
-    // gc_push(splited);
+    gc_push(splited);
     splited[words] = NULL;
     if (!ft_fill(splited, s, c))
         return (NULL);

@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   gc.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 13:33:23 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/08 20:47:27 by aabdenou         ###   ########.fr       */
+/*   Created: 2024/07/08 20:30:34 by aabdenou          #+#    #+#             */
+/*   Updated: 2024/07/08 20:30:43 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 
-char	*ft_strjoin(char *s1, char *s2)
+
+#ifndef GC_H
+# define GC_H
+
+# include <stdlib.h>
+
+typedef struct s_malloc
 {
-	size_t	i;
-	size_t	j;
-	char	*str;
+    void            *address_to_save;
+    struct s_malloc    *next;
+}                    t_malloc;
 
-	i = 0;
-	j = 0;
-	
-	if (!s1)
-		return (ft_strdup(s2));
-	str = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	gc_push(str);
-	while (s1[i])
-	{
-		str[i] = s1[i];
-		i++;
-	}
-	while (s2[j])
-		str[i++] = s2[j++];
-	str[i] = '\0';
-	// free(s1);
-	return (str);
-}
+void                gc_push(void *address_to_save);
+void                _free(void);
+void    error_exit(int status, char *str);
+#endif

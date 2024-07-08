@@ -30,8 +30,9 @@ LIXER = src/lexer.c src/display_tokens.c syntax_error.c
 PARSRE = src/parser.c 
 EXPAND = src/env_linkedlist.c src/expand.c
 ADD = free_fun.c
+FREE = ./gc/gc.c error_exit.c
 
-SRC = main.c loop_minishell.c init.c ${ADD} ${LIBFT_SRC} ${LIXER} ${PARSRE} ${EXPAND}
+SRC = main.c loop_minishell.c init.c ${ADD} ${FREE} ${LIBFT_SRC} ${LIXER} ${PARSRE} ${EXPAND}
 
 OBG = ${SRC:.c=.o}
 

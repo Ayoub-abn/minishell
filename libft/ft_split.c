@@ -6,17 +6,11 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 18:11:12 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/11 16:54:32 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/08 20:36:38 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-
-// l"s -al" ==> exm no val
-
-
-
 
 int count_words(const char *str, char c)
 {
@@ -52,13 +46,13 @@ int count_words(const char *str, char c)
     return count;
 }
 
-char **free_list(char **str, int n)
-{
-    while (n > 0)
-        free(str[--n]);
-    free(str);
-    return NULL;
-}
+// char **free_list(char **str, int n)
+// {
+//     while (n > 0)
+//         free(str[--n]);
+//     free(str);
+//     return NULL;
+// }
 
 // Main split function
 char **ft_split(char const *s, char c)
@@ -70,9 +64,7 @@ char **ft_split(char const *s, char c)
     char quote_char;
 
     ptr = malloc((count_words(s, c) + 1) * sizeof(char *));
-    if (!ptr)
-        return NULL;
-
+    gc_push(ptr);
     while (s && s[i] != '\0')
     {
         // Skip delimiters
@@ -100,7 +92,7 @@ char **ft_split(char const *s, char c)
         // Create the substring for the current word
         ptr[n++] = ft_substr(s, start, i - start);
         if (!ptr[n - 1])
-            return free_list(ptr, n);
+            return (_free(), NULL);
     }
     ptr[n] = NULL;
     return (ptr);
