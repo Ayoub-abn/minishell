@@ -6,74 +6,74 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:21:56 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/07 00:19:35 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/08 17:58:19 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-// char *remove_quotes(char *arg) {
-//     int i = 0;
-//     int j = 0;
-//     char quote_char;
-//     char *str;
+char *remove_quotes(char *arg) {
+    int i = 0;
+    int j = 0;
+    char quote_char;
+    char *str;
 
-//     if (arg == NULL)
-//         return "";
-//     str = malloc(ft_strlen(arg) * (sizeof(char) + 1));
-//     if (!str)
-//         return NULL;
+    if (arg == NULL)
+        return "";
+    str = malloc(ft_strlen(arg) * (sizeof(char) + 1));
+    if (!str)
+        return NULL;
     
-//     while (arg[i]) 
-//     {
-//                                             //hadi mzl ma mfhoma
-//         if ((arg[i] == '"' || arg[i] == '\'') && arg[i+1] != '\0') 
-//         {
-//             quote_char = arg[i];
-//             i++;
-//             while (arg[i] && arg[i] != quote_char)
-//                 str[j++] = arg[i++];
-//             if (arg[i])
-//                 i++;  // Skip the closing quote
-//         } else {
-//             str[j++] = arg[i++];
-//         }
-//     }
-//     str[j] = '\0';
-//     return str;
-// }
-
-char	*remove_quotes(char *arg)
-{
-	int		i;
-	int		j;
-	char	quote_char;
-	char	*str;
-
-	if(arg == NULL)
-		return("");
-	i = 0;
-	j = 0;
-	str = malloc(ft_strlen(arg) * (sizeof(char) + 1));
-	if (!str)
-		return (NULL);
-	while (arg[i])
-	{
-		if (arg[i] == '"' || arg[i] == '\'')
-		{
-			quote_char = arg[i];
-			i++;
-			while (arg[i] && arg[i] != quote_char)
-				str[j++] = arg[i++];
-			if (arg[i])
-				i++;  // Skip the closing quote
-		}
-		else
-			str[j++] = arg[i++];
-	}
-	str[j] = '\0';
-	return (str);
+    while (arg[i]) 
+    {
+                                            //hadi mzl ma mfhoma
+        if ((arg[i] == '"' || arg[i] == '\'') && arg[i+1] != '\0') 
+        {
+            quote_char = arg[i];
+            i++;
+            while (arg[i] && arg[i] != quote_char)
+                str[j++] = arg[i++];
+            if (arg[i])
+                i++;  // Skip the closing quote
+        } else {
+            str[j++] = arg[i++];
+        }
+    }
+    str[j] = '\0';
+    return str;
 }
+
+// char	*remove_quotes(char *arg)
+// {
+// 	int		i;
+// 	int		j;
+// 	char	quote_char;
+// 	char	*str;
+
+// 	if(arg == NULL)
+// 		return("");
+// 	i = 0;
+// 	j = 0;
+// 	str = malloc(ft_strlen(arg) * (sizeof(char) + 1));
+// 	if (!str)
+// 		return (NULL);
+// 	while (arg[i])
+// 	{
+// 		if (arg[i] == '"' || arg[i] == '\'')
+// 		{
+// 			quote_char = arg[i];
+// 			i++;
+// 			while (arg[i] && arg[i] != quote_char)
+// 				str[j++] = arg[i++];
+// 			if (arg[i])
+// 				i++;  // Skip the closing quote
+// 		}
+// 		else
+// 			str[j++] = arg[i++];
+// 	}
+// 	str[j] = '\0';
+// 	return (str);
+// }
 
 void	add_node_file(t_file **head, char *file_name, t_tokens type)
 {
