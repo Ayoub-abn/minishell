@@ -138,12 +138,16 @@ void	display_token_command(t_command *command,t_file *file);
 //////////////////////////////expand//////////////////////
 
 t_env	*envp_to_list(char **envp);
-// void expand(t_lexer *lexer);
 void expand(t_lexer *lexer,t_env *env);
-// void expand(t_tool *data);
 t_env *ft_env_new(char *key,char *value);
 void	ft_lstadd_back_env(t_env **lst, t_env *new);
 void aff(t_env *data);
+int	quote_after_dollar(t_lexer **lexer, int *i, char **str_to_expand);
+void	probability_to_expand(t_lexer *lexer, t_env *env, int *i,
+		char **str_to_expand);
+void	dont_expand(t_lexer **lexer);
+char	*to_expand(char *str);
+char	*get_env_value(t_env *env, char *key);
 ///////////////////////////////free///////////////////////
 
 void	free_link_list(t_lexer **list);

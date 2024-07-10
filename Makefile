@@ -1,6 +1,6 @@
 NAME = minishell
 
-CFLAG = -Wall -Wextra  -Werror  -g3 #-fsanitize=address
+CFLAG = -Wall -Wextra  -Werror  -g3 -fsanitize=address
 
 LIBFT_SRC = ./libft/ft_atoi.c       ./libft/ft_bzero.c \
 			./libft/ft_calloc.c     ./libft/ft_isalnum.c\
@@ -28,7 +28,7 @@ LIBFT_SRC = ./libft/ft_atoi.c       ./libft/ft_bzero.c \
 
 LIXER = src/lexer.c src/display_tokens.c syntax_error.c
 PARSRE = src/parser.c 
-EXPAND = src/env_linkedlist.c src/expand.c
+EXPAND = src/env_linkedlist.c src/expand.c src/expand_loot_box.c
 ADD = free_fun.c
 FREE = ./gc/gc.c error_exit.c
 

@@ -6,88 +6,102 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 21:50:49 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/08 20:37:17 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/10 01:53:47 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
 #include "../minishell.h"
 
-char *get_env_value(t_env *env, char *key) {
-    while (env) {
-        if (ft_strcmp(key, env->key) == 0)
-            return env->value;
-        env = env->next;
-    }
-    return ("");
+char	*get_env_value(t_env *env, char *key)
+{
+	while (env)
+	{
+		if (ft_strcmp(key, env->key) == 0)
+			return (env->value);
+		env = env->next;
+	}
+	return ("");
 }
 
 // Extract the key starting with '$' from the string
-char *to_expand(char *str) {
-    int i = 1;
-    int start = i;
-    while (str[i] && ft_isalnum(str[i]))
-        i++;
-    int end = i;
-    return (ft_substr(str, start, end - start));
-}
-
-// Function to expand variables in lexer tokens
-void expand(t_lexer *lexer, t_env *env) 
+char	*to_expand(char *str)
 {
-    while (lexer) 
-    {   
-        // if $a="ls -al'" => should [ls] [-al']
-        int i = 0;
-        char *str_to_expand = NULL;
+	int	i;
+	int	start;
+	int	end;
 
-        if (lexer->tokens == HEREDOC)
-        {
-            while (lexer->next && lexer->tokens != WORD)
-                lexer = lexer->next; 
-            lexer = lexer->next;
-            continue;
-        }
-        else if (lexer->tokens == WORD && lexer->str[i] != '\'') 
-        {
-            while (lexer->str[i]) 
-            {
-                if(ft_strcmp(lexer->str,"$") == 0)// $"USER" ==> USER
-                {
-                    if(!lexer->next)// echo $
-                    {
-                        str_to_expand = "$";
-                        break;
-                    }
-                    if (lexer->next->str[i] == '"' ||lexer->next->str[i] == '\'' ) //echo $ "a" != echo a
-                        lexer->str = "";
-                    lexer = lexer->next;
-                }
-                if(lexer->str[i] == '$' && (ft_isdigit(lexer->str[i+1]) && (ft_strlen(lexer->str) > 2))) // $9HOME => HOME || $99HOME => 9HOME skip ony the first number
-                     i+=2;//skip $ and num
-                else if (lexer->str[i] == '$'  && (ft_isalnum(lexer->str[i+1]))) 
-                {            
-                    char *key = to_expand(&lexer->str[i]);
-                    char *value = get_env_value(env, key);
-                    i += ft_strlen(key) + 1;
-                    if (value)
-                        str_to_expand = ft_strjoin(str_to_expand, value);
-                    // free(key);
-                }
-                 else // mzl mafahmha 
-                {
-                    char tmp[2] = { lexer->str[i], '\0' };
-                    str_to_expand = ft_strjoin(str_to_expand, tmp);
-                    i++;
-                }
-            }
-            lexer->str = str_to_expand;
-            // free(str_to_expand);
-        }
-        lexer = lexer->next;
-    }
+	i = 1;
+	start = i;
+	while (str[i] && ft_isalnum(str[i]))
+		i++;
+	end = i;
+	return (ft_substr(str, start, end - start));
 }
+// int iniesta(t_lexer **lexer,t_env *env,char **str_to_expand)
+// {
+// 	int i = 0;
+//     char	tmp[2];
+//     while ((*lexer)->str[i])
+// 	{
+// 		if (ft_strcmp((*lexer)->str, "$") == 0)
+// 		{
+// 			if (quote_after_dollar(lexer, &i, str_to_expand))
+// 				break ;
+// 				// return;
+// 		}
+// 		if ((*lexer)->str[i] == '$' && (ft_isdigit((*lexer)->str[i + 1]) && (ft_strlen((*lexer)->str) > 2)))
+// 			i += 2;
+// 		else if ((*lexer)->str[i] == '$' && (ft_isalnum((*lexer)->str[i + 1])))
+// 			probability_to_expand((*lexer), env, &i, str_to_expand);
+// 		else
+// 		{
+// 			(tmp[0] = (*lexer)->str[i++], tmp[1] = '\0');
+// 			*str_to_expand = ft_strjoin(*str_to_expand, tmp);
+// 		}
+// 	}
+// 	return(i);
+// }
+// Function to expand variables in lexer tokens
+// if $a="ls -al'" => should [ls] [-al']
+void	expand(t_lexer *lexer, t_env *env)
+{
+	char	*str_to_expand;
+	int		i;
+	char	tmp[2];
 
-
-
+	while (lexer)
+	{
+		i = 0;
+		str_to_expand = NULL;
+		if (lexer->tokens == HEREDOC)
+		{
+			dont_expand(&lexer);
+			continue ;
+		}
+		else if (lexer->tokens == WORD && lexer->str[i] != '\'')
+		{
+			// i = iniesta(&lexer,env,&str_to_expand);
+			while (lexer->str[i])
+			{
+				if (ft_strcmp(lexer->str, "$") == 0)
+				{
+					if (quote_after_dollar(&lexer, &i, &str_to_expand))
+						break ;
+				}
+				if (lexer->str[i] == '$' && (ft_isdigit(lexer->str[i + 1])
+						&& (ft_strlen(lexer->str) > 2)))
+					i += 2;
+				else if (lexer->str[i] == '$' && (ft_isalnum(lexer->str[i
+							+ 1])))
+					probability_to_expand(lexer, env, &i, &str_to_expand);
+				else
+				{
+					(tmp[0] = lexer->str[i++], tmp[1] = '\0');
+					str_to_expand = ft_strjoin(str_to_expand, tmp);
+				}
+			}
+			lexer->str = str_to_expand;
+		}
+		lexer = lexer->next;
+	}
+}
