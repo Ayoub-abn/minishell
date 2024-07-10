@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 21:50:49 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/10 01:58:54 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/10 02:04:07 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ char	*to_expand(char *str)
 	end = i;
 	return (ft_substr(str, start, end - start));
 }
+
 int	iniesta(t_lexer **lexer, t_env *env, char **str_to_expand)
 {
 	int		i;
@@ -57,12 +58,14 @@ int	iniesta(t_lexer **lexer, t_env *env, char **str_to_expand)
 			probability_to_expand((*lexer), env, &i, str_to_expand);
 		else
 		{
-			(tmp[0] = (*lexer)->str[i++], tmp[1] = '\0');
+			tmp[0] = (*lexer)->str[i++];
+			tmp[1] = '\0';
 			*str_to_expand = ft_strjoin(*str_to_expand, tmp);
 		}
 	}
 	return (i);
 }
+
 // Function to expand variables in lexer tokens
 // if $a="ls -al'" => should [ls] [-al']
 void	expand(t_lexer *lexer, t_env *env)

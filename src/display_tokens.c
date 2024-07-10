@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 23:55:12 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/27 16:55:50 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/10 02:20:29 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,57 +42,6 @@ void	display_token_lexer(t_lexer *lexer)
 		lexer = lexer->next;
 	}
 }
-// void	display_token_command(t_command *lexer)
-// {
-// 	// t_lexer *temp;
-// 	// temp = lexer;
-// 	while (lexer)
-// 	{
-// 		// printf("value (%s) \t key (%s)\n", lexer->str,get_token(lexer->tokens));
-// 		 printf("command = %s \t file_name = %s file_type = %s \n",lexer->cmd,lexer->file_name,get_token(lexer->file_type));
-// 		lexer = lexer->next;
-// 	}
-// }
-// void	display_token(t_file *file)
-// {
-// 	while (file)
-// 	{
-// 		printf("file_name : (%s) \tfile_type(%s)\n",file->file_name,get_token(file->file_type));
-// 		file = file->next;
-// 	}
-// }
-
-// void display_token_command(t_command *command,t_file *file)
-// {
-// 	(void) file;
-//     int node = 1;
-// 	// t_file *file = command->file;
-
-// 	// while(file)
-// 	// {
-// 	// 	// printf("\t file name %s\n",file->file_name);
-// 	// 	printf("\t file type %s\n",get_token(file->file_type));
-// 	// 	file = file->next;
-// 	// }
-
-// 	// if(file->file_name)
-// 	// 	printf("hi\n");
-
-//     while (command)
-//     {
-//         printf("command[%d]:\n", node);
-// 		printf("\t file name %s\n",get_token(command->file->file_type));
-//         int i = 0;
-//         while (command->cmd[i])
-//         {
-//             printf("\tcontent[%d]: %s\n", i + 1, command->cmd[i]);
-//             i++;
-//         }
-//         node++;
-//         command = command->next;
-//     }
-// }
-//
 void display_token_command(t_command *command,  t_file *file )
 {
     // t_file *current_file = file;
