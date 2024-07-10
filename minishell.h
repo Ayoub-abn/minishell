@@ -15,14 +15,13 @@
 # define MINI_SHELL_H
 
 # include "./libft/libft.h"
-#include "gc.h"
+# include "gc.h"
 # include <readline/history.h>
 # include <readline/readline.h>
+# include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-#include <stdbool.h>
-
 
 // #define WORD 1
 // #define PIPE 2
@@ -57,11 +56,10 @@ typedef struct s_lexer
 }						t_lexer;
 typedef struct s_env
 {
-	char *key;
-	char *value;
-	struct s_env *next;
+	char				*key;
+	char				*value;
+	struct s_env		*next;
 }						t_env;
-
 
 ///////////////////execute////////////
 typedef struct s_file
@@ -74,7 +72,7 @@ typedef struct s_file
 typedef struct s_command
 {
 	// char			*cmd;
-	char				**cmd /*[0] =>command | [0 + 1] =>arg command*/;
+	char **cmd /*[0] =>command | [0 + 1] =>arg command*/;
 	t_file				*file;
 	struct s_command	*next;
 }						t_command;
@@ -89,7 +87,6 @@ typedef struct s_tool
 	t_env				*env;
 }						t_tool;
 
-
 ////////////////////list//////////////
 void					ft_lstadd_front(t_list **lst, t_list *new);
 // t_list				*ft_lstnew(void *content);
@@ -103,57 +100,46 @@ t_lexer					*ft_lstlast(t_lexer *lst);
 int						ft_lstsize(t_list *lst);
 // void				ft_lstadd_back(t_list **lst, t_list *new);
 void					ft_lstadd_back(t_lexer **lst, t_lexer *new);
-///////////////////////////////////////////////////////
-
-char					**array_cpy(char **env);
-void					command_line(char **command, t_list **head);
-// void					loop_minishell(t_tool *data);
-void	loop_minishell(t_tool *data,t_env *env);
-// void					loop_minishell(t_tool *data,char **env);
+//////////////////////////main///////////////////////
+void					loop_minishell(t_tool *data, t_env *env);
 //////////////////////lexer//////////////////////////
 void					lexer(t_tool *data);
-void	display_token_lexer(t_lexer *lexer);
-// void add_node(t_lexer **head, int type,char *str);
+void					display_token_lexer(t_lexer *lexer);
 void					add_node(t_lexer **head, t_tokens type, char *str);
-// void				display_token(t_lexer *lexer);
 /////////////////////syntax_error///////////////////
 int						check_quotes(t_lexer *head);
-// int						unexpected_token(t_lexer **head);
 int						syntax_error(t_tool *data);
 /////////////////////parser///////////////////////////
-// void					parser(t_tool *data);
-// void	parser(t_lexer *data);
-char *remove_quotes (char *arg);
-// void	parser(t_lexer *data , t_command *command_list);
-t_command	*parser(t_lexer *data);
+char					*remove_quotes(char *arg);
+t_command				*parser(t_lexer *data);
+void					add_node_command(t_command **head, t_file **file_head,
+							char *command);
+void					xavi(t_lexer **head, char **command, t_file **file);
+void					handel_token(t_lexer **head, t_file **file,
+							t_tokens type);
 t_file					*ft_file_new(char *file_name, t_tokens type);
-t_command	*ft_command_new(char *command ,t_file *file);
-// t_command				*ft_command_new(char *command);
+t_command				*ft_command_new(char *command, t_file *file);
 void					ft_lstadd_back_command(t_command **lst, t_command *new);
 void					display_token(t_file *file);
 void					ft_lstadd_back_file(t_file **lst, t_file *new);
 char					*get_token(t_tokens token);
-// void	display_token_command(t_command *command);
-void	display_token_command(t_command *command,t_file *file);
+void					display_token_command(t_command *command, t_file *file);
+void					add_node_file(t_file **head, char *file_name,
+							t_tokens type);
 //////////////////////////////expand//////////////////////
 
-t_env	*envp_to_list(char **envp);
-void expand(t_lexer *lexer,t_env *env);
-t_env *ft_env_new(char *key,char *value);
-void	ft_lstadd_back_env(t_env **lst, t_env *new);
-void aff(t_env *data);
-int	quote_after_dollar(t_lexer **lexer, int *i, char **str_to_expand);
-void	probability_to_expand(t_lexer *lexer, t_env *env, int *i,
-		char **str_to_expand);
-void	dont_expand(t_lexer **lexer);
-char	*to_expand(char *str);
-char	*get_env_value(t_env *env, char *key);
+t_env					*envp_to_list(char **envp);
+void					expand(t_lexer *lexer, t_env *env);
+t_env					*ft_env_new(char *key, char *value);
+void					ft_lstadd_back_env(t_env **lst, t_env *new);
+void					aff(t_env *data);
+int						quote_after_dollar(t_lexer **lexer, int *i,
+							char **str_to_expand);
+void					probability_to_expand(t_lexer *lexer, t_env *env,
+							int *i, char **str_to_expand);
+void					dont_expand(t_lexer **lexer);
+char					*to_expand(char *str);
+char					*get_env_value(t_env *env, char *key);
 ///////////////////////////////free///////////////////////
-
-void	free_link_list(t_lexer **list);
-void	free_link_list_parser(t_command **list);
-void	free_link_list_env(t_env **list);
-
-
 
 #endif

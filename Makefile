@@ -19,20 +19,18 @@ LIBFT_SRC = ./libft/ft_atoi.c       ./libft/ft_bzero.c \
  			./libft/ft_putendl_fd.c ./libft/ft_putnbr_fd.c \
  			./libft/ft_strmapi.c    ./libft/ft_striteri.c \
  			./libft/ft_itoa.c       ./libft/ft_split.c\
-			./libft/ft_strcmp.c ./libft/ft_split_sp.c\
+			./libft/ft_strcmp.c \
 			ft_lexer_new.c 		ft_lstsize_bonus.c ft_lstlast_bonus.c \
 	   		ft_lstadd_back_bonus.c 	ft_lstadd_front_bonus.c\
 			
 
-# LIBFT_SRC = $(wildcard libft/*.c) $(wildcard src/*.c) $(wildcard *.c)
 
 LIXER = src/lexer.c src/display_tokens.c syntax_error.c
-PARSRE = src/parser.c 
+PARSRE = src/parser.c src/parser_loot_box.c
 EXPAND = src/env_linkedlist.c src/expand.c src/expand_loot_box.c
-ADD = free_fun.c
 FREE = ./gc/gc.c error_exit.c
 
-SRC = main.c loop_minishell.c init.c ${ADD} ${FREE} ${LIBFT_SRC} ${LIXER} ${PARSRE} ${EXPAND}
+SRC = main.c loop_minishell.c ${FREE} ${LIBFT_SRC} ${LIXER} ${PARSRE} ${EXPAND}
 
 OBG = ${SRC:.c=.o}
 
@@ -45,7 +43,6 @@ all: ${NAME}
 ${NAME} : ${OBG}
 	@${CC} ${CFLAG} ${OBG} -lreadline -lhistory -o ${NAME}
 	@echo "💯"
-# @rm -f ${OBG} rm -f
 
 
 clean:

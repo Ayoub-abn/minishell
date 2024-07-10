@@ -36,7 +36,8 @@ static t_env	*new_node(char *envp_line)
 	gc_push(lst);
 	key = ft_substr(envp_line, 0, search_in(envp_line, '='));
 	lst->key = key;
-	value = ft_substr(envp_line, search_in(envp_line, '=') + 1, ft_strlen(envp_line));
+	value = ft_substr(envp_line, search_in(envp_line, '=') + 1,
+			ft_strlen(envp_line));
 	lst->value = value;
 	lst->next = NULL;
 	return (lst);
@@ -73,7 +74,7 @@ t_env	*envp_to_list(char **envp)
 	while (envp[i])
 	{
 		add_back(&list, new_node(envp[i]));
-        i++;
+		i++;
 	}
 	return (list);
 }

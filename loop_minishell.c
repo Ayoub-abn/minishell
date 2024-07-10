@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 22:06:45 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/08 20:50:26 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/11 00:06:12 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 void	loop_minishell(t_tool *data,t_env *env)
 {
-	// (void)data;
-	// (void)env;
 	t_command *command_list;
 	
 	while (1)
@@ -28,8 +26,7 @@ void	loop_minishell(t_tool *data,t_env *env)
 			lexer(data);
 			if (syntax_error(data))
 			{
-				// free_link_list(&data->lexer_list);
-				_free();
+				printf("syntax error\n");
 				continue;
 			}
 			expand(data->lexer_list,env);
@@ -40,16 +37,9 @@ void	loop_minishell(t_tool *data,t_env *env)
 		}
 		else if(!data->cmd)
 		{
-			// free_link_list_parser(&command_list);
-			// free_link_list(&data->lexer_list);
-			// free_link_list_env(&env);
 			_free();
+			//ba9i leak
 			break;
 		}
 	}
-	// 	// printf("%s\n", data->cmd);
-	// 	//handle signal dyal ctrl+D
-	// }
-	// expand(env);
-
 }

@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 23:55:12 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/10 02:20:29 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/11 00:28:50 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 char	*get_token(t_tokens token)
 {
-	// printf("%d\n",token);
 	if (token == 0)
 		return ("WORD");
 	else if (token == 1)
@@ -34,8 +33,6 @@ char	*get_token(t_tokens token)
 
 void	display_token_lexer(t_lexer *lexer)
 {
-	// t_lexer *temp;
-	// temp = lexer;
 	while (lexer)
 	{
 		printf("value (%s) \t key (%s)\n", lexer->str,get_token(lexer->tokens));
@@ -44,7 +41,6 @@ void	display_token_lexer(t_lexer *lexer)
 }
 void display_token_command(t_command *command,  t_file *file )
 {
-    // t_file *current_file = file;
     (void) file;
     int node = 1;
     
@@ -66,7 +62,6 @@ void display_token_command(t_command *command,  t_file *file )
             while (command->file)
             {
                 printf("\tfile name: %s \tfile type: %s\n", command->file->file_name,get_token(command->file->file_type));   
-                // printf("\tfile type: %s\n", get_token(command->file->file_type));
                 command->file = command->file->next;
             }
             node++;

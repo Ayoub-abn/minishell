@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
 #ifndef GC_H
 # define GC_H
 
@@ -19,11 +17,11 @@
 
 typedef struct s_malloc
 {
-    void            *address_to_save;
-    struct s_malloc    *next;
-}                    t_malloc;
+	void			*address_to_save;
+	struct s_malloc	*next;
+}					t_malloc;
 
-void                gc_push(void *address_to_save);
-void                _free(void);
-void    error_exit(int status, char *str);
+void				gc_push(void *address_to_save);
+void				_free(void);
+void				error_exit(int status, char *str);
 #endif

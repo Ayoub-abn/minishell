@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 18:10:04 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/08 17:42:12 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/11 00:11:03 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,8 @@
 void	add_node(t_lexer **head, t_tokens type, char *str)
 {
 	t_lexer	*node;
+
 	node = ft_lexer_new(str, type);
-	if (!node)
-	{
-		//memory problem
-		return ;
-	}
 	ft_lstadd_back(head, node);
 }
 int	is_string(t_tool *data, int i)
@@ -30,50 +26,45 @@ int	is_string(t_tool *data, int i)
 	char	*line;
 
 	start = i;
-	//handel dabble quotes
-    if(data->cmd[i] == 39)
-    {
-        i++;
-        while (data->cmd[i] != '\0' && data->cmd[i] != 39)
-            i++;
-		//cmd[i] != '\0'
-		if(data->cmd[i])
-			i++;
-    }
-	//handel single quotes
-	else if (data->cmd[i] == 34)
+	// handel dabble quotes
+	if (data->cmd[i] == 39)
 	{
-		
 		i++;
-        while (data->cmd[i] != '\0' && data->cmd[i] != 34)
-            i++;
-		//cmd[i] != '\0'
-		if(data->cmd[i])
+		while (data->cmd[i] != '\0' && data->cmd[i] != 39)
+			i++;
+		// cmd[i] != '\0'
+		if (data->cmd[i])
 			i++;
 	}
-    else
-    {
-        while (data->cmd[i] != '\0' && data->cmd[i] != ' '
-				&& data->cmd[i] != '\t' && data->cmd[i] != '<'
-				&& data->cmd[i] != '>' && data->cmd[i] != '|'
-				&& data->cmd[i] != 39 && data->cmd[i] != 34)
-                i++;
-    }
-    end = i;
-    line = ft_substr(data->cmd, start, end - start);
-    add_node(&data->lexer_list, WORD, line);
-	// free(line);
+	// handel single quotes
+	else if (data->cmd[i] == 34)
+	{
+		i++;
+		while (data->cmd[i] != '\0' && data->cmd[i] != 34)
+			i++;
+		// cmd[i] != '\0'
+		if (data->cmd[i])
+			i++;
+	}
+	else
+	{
+		while (data->cmd[i] != '\0' && data->cmd[i] != ' '
+			&& data->cmd[i] != '\t' && data->cmd[i] != '<'
+			&& data->cmd[i] != '>' && data->cmd[i] != '|' && data->cmd[i] != 39
+			&& data->cmd[i] != 34)
+			i++;
+	}
+	end = i;
+	line = ft_substr(data->cmd, start, end - start);
+	add_node(&data->lexer_list, WORD, line);
 	return (i);
 }
 
 void	lexer(t_tool *data)
 {
-	int		i;
+	int	i;
 
-	data->lexer_list = NULL;/* = malloc(sizeof(t_lexer));
-	if (!data->lexer_list)
-		return ; */
-	// data->lexer_list = NULL;
+	data->lexer_list = NULL;
 	i = 0;
 	while (data->cmd[i])
 	{
@@ -81,7 +72,8 @@ void	lexer(t_tool *data)
 		if (data->cmd[i] == ' ' || data->cmd[i] == '\t')
 		{
 			add_node(&data->lexer_list, WHITESPACE, " ");
-			while (data->cmd[i] && (data->cmd[i] == ' ' || data->cmd[i] == '\t'))
+			while (data->cmd[i] && (data->cmd[i] == ' '
+					|| data->cmd[i] == '\t'))
 				i++;
 			if (!data->cmd[i])
 				break ;
@@ -116,6 +108,6 @@ void	lexer(t_tool *data)
 		}
 		// Handle string
 		else
-			i = is_string(data,i);
+			i = is_string(data, i);
 	}
 }
