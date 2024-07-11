@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 18:47:08 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/11 17:41:41 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/11 18:45:07 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include "../gc.h"
+# include "../gc/gc.h"
 
 int					ft_atoi(const char *str);
 size_t				ft_strlcat(char *dst, const char *src, size_t dstsize);

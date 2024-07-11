@@ -6,11 +6,11 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 23:27:33 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/09 23:28:45 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/11 18:49:46 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "./../../minishell.h"
 
 // fun handle $"USER" ==> USER | if 1: echo $ | if 2:echo $ "a" != echo a
 int	quote_after_dollar(t_lexer **lexer, int *i, char **str_to_expand)

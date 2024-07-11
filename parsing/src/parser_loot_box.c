@@ -6,11 +6,11 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 13:11:23 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/10 13:22:45 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/11 18:49:56 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "./../../minishell.h"
 
 void	add_node_file(t_file **head, char *file_name, t_tokens type)
 {

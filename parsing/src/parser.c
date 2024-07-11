@@ -6,11 +6,11 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:21:56 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/11 18:18:21 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/11 18:50:02 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "./../../minishell.h"
 
 int	check_quotes_to_remove(int i, char *arg)
 {

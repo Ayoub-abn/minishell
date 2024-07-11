@@ -6,11 +6,11 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 15:21:27 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/11 17:47:02 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/11 18:50:07 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "./../../minishell.h"
 
 int	check_whitespace(t_lexer **head)
 {

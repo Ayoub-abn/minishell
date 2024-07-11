@@ -6,11 +6,11 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 18:19:23 by merrahal          #+#    #+#             */
-/*   Updated: 2024/07/08 20:26:41 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/11 18:49:42 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "./../../minishell.h"
 
 static int	search_in(char *str, char c)
 {

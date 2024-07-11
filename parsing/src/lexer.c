@@ -6,11 +6,11 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 18:10:04 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/11 02:25:48 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/11 19:41:16 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "./../../minishell.h"
 
 void	add_node(t_lexer **head, t_tokens type, char *str)
 {
@@ -57,6 +57,17 @@ int	is_string(t_tool *data, int i)
 	return (add_node(&data->lexer_list, WORD, line), i);
 }
 
+int	add_whitespace(int i, t_tool **data)
+{
+	add_node(&(*data)->lexer_list, WHITESPACE, " ");
+	while ((*data)->cmd[i] && ((*data)->cmd[i] == ' '
+			|| (*data)->cmd[i] == '\t'))
+		i++;
+	if (!(*data)->cmd[i])
+		return (-1);
+	return (i);
+}
+
 void	lexer(t_tool *data)
 {
 	int	i;
@@ -67,11 +78,8 @@ void	lexer(t_tool *data)
 	{
 		if (data->cmd[i] == ' ' || data->cmd[i] == '\t')
 		{
-			add_node(&data->lexer_list, WHITESPACE, " ");
-			while (data->cmd[i] && (data->cmd[i] == ' '
-					|| data->cmd[i] == '\t'))
-				i++;
-			if (!data->cmd[i])
+			i = add_whitespace(i, &data);
+			if (i == -1)
 				break ;
 		}
 		else if (data->cmd[i] == '<' && data->cmd[i + 1] == '<')

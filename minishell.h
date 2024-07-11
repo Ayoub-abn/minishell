@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 21:11:39 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/11 17:44:14 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/11 18:45:41 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define MINISHELL_H
 
 # include "./libft/libft.h"
-# include "gc.h"
+# include "./gc/gc.h"
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <stdbool.h>

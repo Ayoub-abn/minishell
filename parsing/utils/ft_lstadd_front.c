@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/20 10:14:28 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/05/24 21:23:04 by aabdenou         ###   ########.fr       */
+/*   Created: 2023/11/16 23:25:15 by aabdenou          #+#    #+#             */
+/*   Updated: 2024/07/11 18:47:39 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "./../../minishell.h"
 
-t_lexer	*ft_lstlast(t_lexer *lst)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	t_lexer	*p;
-
-	if (lst == NULL)
-		return (NULL);
-	p = lst;
-	while (p->next != NULL)
-		p = p->next;
-	return (p);
+	if (lst == NULL || new == NULL)
+	{
+		return ;
+	}
+	new->next = *lst;
+	*lst = new;
 }

@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/16 23:25:15 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/05/27 11:52:16 by aabdenou         ###   ########.fr       */
+/*   Created: 2023/11/18 19:36:16 by aabdenou          #+#    #+#             */
+/*   Updated: 2024/07/11 18:47:51 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "./../../minishell.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+int	ft_lstsize(t_list *lst)
 {
-	if (lst == NULL || new == NULL)
+	t_list	*p;
+	int		i;
+
+	i = 0;
+	p = lst;
+	while (p != NULL)
 	{
-		return ;
+		p = p->next;
+		i++;
 	}
-	new->next = *lst;
-	*lst = new;
+	return (i);
 }

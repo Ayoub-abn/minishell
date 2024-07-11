@@ -6,11 +6,11 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 22:19:58 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/11 00:31:13 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/11 18:47:19 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "./../../minishell.h"
 
 t_lexer	*ft_lexer_new(char *str, t_tokens type)
 {

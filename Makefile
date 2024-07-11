@@ -20,17 +20,16 @@ LIBFT_SRC = ./libft/ft_atoi.c       ./libft/ft_bzero.c \
  			./libft/ft_strmapi.c    ./libft/ft_striteri.c \
  			./libft/ft_itoa.c       ./libft/ft_split.c\
 			./libft/ft_strcmp.c \
-			ft_lexer_new.c 		ft_lstsize_bonus.c ft_lstlast_bonus.c \
-	   		ft_lstadd_back_bonus.c 	ft_lstadd_front_bonus.c\
+			
 			
 
-
-LIXER = src/lexer.c src/display_tokens.c syntax_error.c
-PARSRE = src/parser.c src/parser_loot_box.c
-EXPAND = src/env_linkedlist.c src/expand.c src/expand_loot_box.c
+UTILS = parsing/utils/ft_lexer_new.c parsing/utils/ft_lstsize.c parsing/utils/ft_lstlast.c parsing/utils/ft_lstadd_back.c 	parsing/utils/ft_lstadd_front.c
+LIXER = parsing/src/lexer.c parsing/src/display_tokens.c parsing/src/syntax_error.c
+PARSRE = parsing/src/parser.c parsing/src/parser_loot_box.c
+EXPAND = parsing/src/env_linkedlist.c parsing/src/expand.c parsing/src/expand_loot_box.c
 FREE = ./gc/gc.c ./gc/error_exit.c
 
-SRC = main.c loop_minishell.c ${FREE} ${LIBFT_SRC} ${LIXER} ${PARSRE} ${EXPAND}
+SRC = main.c loop_minishell.c ${UTILS} ${FREE} ${LIBFT_SRC} ${LIXER} ${PARSRE} ${EXPAND}
 
 OBG = ${SRC:.c=.o}
 

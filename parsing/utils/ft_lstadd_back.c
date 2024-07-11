@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:21:51 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/11 00:33:20 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/11 18:47:34 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "./../../minishell.h"
 
 void	ft_lstadd_back(t_lexer **lst, t_lexer *new)
 {
