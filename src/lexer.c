@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 18:10:04 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/11 00:11:03 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/11 02:25:48 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,45 +19,42 @@ void	add_node(t_lexer **head, t_tokens type, char *str)
 	node = ft_lexer_new(str, type);
 	ft_lstadd_back(head, node);
 }
+
+int	while_is_str(char *cmd, int i)
+{
+	while (cmd[i] != '\0' && cmd[i] != ' ' && cmd[i] != '\t' && cmd[i] != '<'
+		&& cmd[i] != '>' && cmd[i] != '|' && cmd[i] != '"' && cmd[i] != '\'')
+		i++;
+	return (i);
+}
+
 int	is_string(t_tool *data, int i)
 {
-	int		start;
-	int		end;
 	char	*line;
 
+	int (start), (end);
 	start = i;
-	// handel dabble quotes
-	if (data->cmd[i] == 39)
+	if (data->cmd[i] == '"')
 	{
 		i++;
-		while (data->cmd[i] != '\0' && data->cmd[i] != 39)
+		while (data->cmd[i] != '\0' && data->cmd[i] != '"')
 			i++;
-		// cmd[i] != '\0'
 		if (data->cmd[i])
 			i++;
 	}
-	// handel single quotes
-	else if (data->cmd[i] == 34)
+	else if (data->cmd[i] == '\'')
 	{
 		i++;
-		while (data->cmd[i] != '\0' && data->cmd[i] != 34)
+		while (data->cmd[i] != '\0' && data->cmd[i] != '\'')
 			i++;
-		// cmd[i] != '\0'
 		if (data->cmd[i])
 			i++;
 	}
 	else
-	{
-		while (data->cmd[i] != '\0' && data->cmd[i] != ' '
-			&& data->cmd[i] != '\t' && data->cmd[i] != '<'
-			&& data->cmd[i] != '>' && data->cmd[i] != '|' && data->cmd[i] != 39
-			&& data->cmd[i] != 34)
-			i++;
-	}
+		i = while_is_str(data->cmd, i);
 	end = i;
 	line = ft_substr(data->cmd, start, end - start);
-	add_node(&data->lexer_list, WORD, line);
-	return (i);
+	return (add_node(&data->lexer_list, WORD, line), i);
 }
 
 void	lexer(t_tool *data)
@@ -68,7 +65,6 @@ void	lexer(t_tool *data)
 	i = 0;
 	while (data->cmd[i])
 	{
-		// handle whitespace characters
 		if (data->cmd[i] == ' ' || data->cmd[i] == '\t')
 		{
 			add_node(&data->lexer_list, WHITESPACE, " ");
@@ -78,35 +74,16 @@ void	lexer(t_tool *data)
 			if (!data->cmd[i])
 				break ;
 		}
-		// Handle double character tokens (<<, >>)
 		else if (data->cmd[i] == '<' && data->cmd[i + 1] == '<')
-		{
-			add_node(&data->lexer_list, HEREDOC, "<<");
-			i += 2;
-		}
+			(add_node(&data->lexer_list, HEREDOC, "<<"), i += 2);
 		else if (data->cmd[i] == '>' && data->cmd[i + 1] == '>')
-		{
-			add_node(&data->lexer_list, APPEND, ">>");
-			i += 2;
-		}
-		// Handle single character tokens (>, <)
+			(add_node(&data->lexer_list, APPEND, ">>"), i += 2);
 		else if (data->cmd[i] == '>' && data->cmd[i + 1] != '>')
-		{
-			add_node(&data->lexer_list, REDIR_OUT, ">");
-			i++;
-		}
+			(add_node(&data->lexer_list, REDIR_OUT, ">"), i++);
 		else if (data->cmd[i] == '<' && data->cmd[i + 1] != '<')
-		{
-			add_node(&data->lexer_list, REDIR_IN, "<");
-			i++;
-		}
-		// Handle pipe token (|)
+			(add_node(&data->lexer_list, REDIR_IN, "<"), i++);
 		else if (data->cmd[i] == '|')
-		{
-			add_node(&data->lexer_list, PIPE, "|");
-			i++;
-		}
-		// Handle string
+			(add_node(&data->lexer_list, PIPE, "|"), i++);
 		else
 			i = is_string(data, i);
 	}
