@@ -6,12 +6,13 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 21:58:05 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/11 02:28:00 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/11 18:08:51 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
+//norm lexer
+//syntax
 int	main(int ac, char **av, char **env)
 {
 	t_tool	tools;
@@ -25,8 +26,3 @@ int	main(int ac, char **av, char **env)
 	list = envp_to_list(env);
 	loop_minishell(&tools, list);
 }
-
-
-//norm lexer
-//syntax
-// sp f lpdaya

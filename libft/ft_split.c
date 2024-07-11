@@ -6,94 +6,73 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 18:11:12 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/08 20:36:38 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/11 17:31:29 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int count_words(const char *str, char c)
+int	while_split(int i, const char *str)
 {
-    int i = 0, count = 0;
-    char quote_char;
+	char	quote_char;
 
-    while (str && str[i])
-    {
-        // Skip delimiters
-        while (str[i] == c)
-            i++;
-        // If we reached the end of the string, break
-        if (str[i] == '\0')
-            break;
-        // Increment word count
-        if (str[i] != c)
-            count++;
-        // Traverse the word
-        while (str[i] && (str[i] != c || str[i] == '"' || str[i] == '\''))
-        {
-            if (str[i] == '"' || str[i] == '\'')
-            {
-                quote_char = str[i++];
-                while (str[i] && str[i] != quote_char)
-                    i++;
-                if (str[i] == quote_char)
-                    i++;
-            }
-            else
-                i++;
-        }
-    }
-    return count;
+	quote_char = str[i++];
+	while (str[i] && str[i] != quote_char)
+		i++;
+	if (str[i] == quote_char)
+		i++;
+	return (i);
 }
 
-// char **free_list(char **str, int n)
-// {
-//     while (n > 0)
-//         free(str[--n]);
-//     free(str);
-//     return NULL;
-// }
-
-// Main split function
-char **ft_split(char const *s, char c)
+int	count_words(const char *str, char c)
 {
-    char **ptr;
-    int i = 0;
-	int n = 0;
-	int start;
-    char quote_char;
+	int (i), (count);
+	i = 0;
+	count = 0;
+	while (str && str[i])
+	{
+		while (str[i] == c)
+			i++;
+		if (str[i] == '\0')
+			break ;
+		if (str[i] != c)
+			count++;
+		while (str[i] && (str[i] != c || str[i] == '"' || str[i] == '\''))
+		{
+			if (str[i] == '"' || str[i] == '\'')
+				i = while_split(i, str);
+			else
+				i++;
+		}
+	}
+	return (count);
+}
 
-    ptr = malloc((count_words(s, c) + 1) * sizeof(char *));
-    gc_push(ptr);
-    while (s && s[i] != '\0')
-    {
-        // Skip delimiters
-        while (s[i] == c)
-            i++;
-        // If we reached the end of the string, break
-        if (s[i] == '\0')
-            break;
-        // Mark the start of the word
-        start = i;
-        // Traverse the word
-        while (s[i] && (s[i] != c || (s[i] == '"' || s[i] == '\'')))
-        {
-            if (s[i] == '"' || s[i] == '\'')
-            {
-                quote_char = s[i++];
-                while (s[i] && s[i] != quote_char)
-                    i++;
-                if (s[i] == quote_char)
-                    i++;
-            }
-            else
-                i++;
-        }
-        // Create the substring for the current word
-        ptr[n++] = ft_substr(s, start, i - start);
-        if (!ptr[n - 1])
-            return (_free(), NULL);
-    }
-    ptr[n] = NULL;
-    return (ptr);
+char	**ft_split(char const *s, char c)
+{
+	char **(ptr);
+	int (i), (n), (start);
+	i = 0;
+	n = 0;
+	ptr = malloc((count_words(s, c) + 1) * sizeof(char *));
+	gc_push(ptr);
+	while (s && s[i] != '\0')
+	{
+		while (s[i] == c)
+			i++;
+		if (s[i] == '\0')
+			break ;
+		start = i;
+		while (s[i] && (s[i] != c || (s[i] == '"' || s[i] == '\'')))
+		{
+			if (s[i] == '"' || s[i] == '\'')
+				i = while_split(i, s);
+			else
+				i++;
+		}
+		ptr[n++] = ft_substr(s, start, i - start);
+		if (!ptr[n - 1])
+			return (_free(), NULL);
+	}
+	return (ptr[n] = NULL, ptr);
 }

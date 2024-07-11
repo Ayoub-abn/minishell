@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 18:47:08 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/08 20:31:53 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/11 17:41:41 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-#include "../gc.h"
+# include "../gc.h"
 
 int					ft_atoi(const char *str);
 size_t				ft_strlcat(char *dst, const char *src, size_t dstsize);
@@ -45,7 +45,7 @@ char				*ft_strdup(char *s1);
 void				ft_striteri(char *s, void (*f)(unsigned int, char *));
 char				*ft_strjoin(char *s1, char *s2);
 size_t				ft_strlcpy(char *dst, const char *src, size_t dstsize);
-size_t				ft_strlen(const char  *str);
+size_t				ft_strlen(const char *str);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 int					ft_strcmp(const char *s1, const char *s2);

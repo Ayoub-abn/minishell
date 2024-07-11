@@ -1,4 +1,3 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -7,12 +6,12 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 21:11:39 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/05/31 20:42:28 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/11 17:44:14 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINI_SHELL_H
-# define MINI_SHELL_H
+#ifndef MINISHELL_H
+# define MINISHELL_H
 
 # include "./libft/libft.h"
 # include "gc.h"
@@ -71,8 +70,7 @@ typedef struct s_file
 
 typedef struct s_command
 {
-	// char			*cmd;
-	char **cmd /*[0] =>command | [0 + 1] =>arg command*/;
+	char				**cmd;
 	t_file				*file;
 	struct s_command	*next;
 }						t_command;
@@ -89,16 +87,9 @@ typedef struct s_tool
 
 ////////////////////list//////////////
 void					ft_lstadd_front(t_list **lst, t_list *new);
-// t_list				*ft_lstnew(void *content);
-// t_lexer				*ft_lexer_new(char *str,int type);
 t_lexer					*ft_lexer_new(char *str, t_tokens type);
-// t_command			*ft_command_new(char *command, char *file_name,
-// 						t_type_command type);
-
-// t_list				*ft_lstlast(t_list *lst);
 t_lexer					*ft_lstlast(t_lexer *lst);
 int						ft_lstsize(t_list *lst);
-// void				ft_lstadd_back(t_list **lst, t_list *new);
 void					ft_lstadd_back(t_lexer **lst, t_lexer *new);
 //////////////////////////main///////////////////////
 void					loop_minishell(t_tool *data, t_env *env);

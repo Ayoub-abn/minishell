@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 18:51:42 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/06/05 21:44:02 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/11 17:02:16 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 size_t	ft_strlen(const char *str)
 {
 	size_t	i;
-	
+
 	if (str == NULL)
 		return (0);
 	i = 0;

@@ -28,7 +28,7 @@ LIBFT_SRC = ./libft/ft_atoi.c       ./libft/ft_bzero.c \
 LIXER = src/lexer.c src/display_tokens.c syntax_error.c
 PARSRE = src/parser.c src/parser_loot_box.c
 EXPAND = src/env_linkedlist.c src/expand.c src/expand_loot_box.c
-FREE = ./gc/gc.c error_exit.c
+FREE = ./gc/gc.c ./gc/error_exit.c
 
 SRC = main.c loop_minishell.c ${FREE} ${LIBFT_SRC} ${LIXER} ${PARSRE} ${EXPAND}
 

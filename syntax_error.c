@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 15:21:27 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/10 22:22:28 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/11 17:47:02 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ int	check_quotes(t_lexer *head)
 		{
 			quotes = head->str[0];
 			// if str = ' or "               if last world is not " or '
-			if (ft_strlen(head->str) == 1 || head->str[ft_strlen(head->str) - 1] != quotes)
+			if (ft_strlen(head->str) == 1 || head->str[ft_strlen(head->str)
+					-1] != quotes)
 				return (1);
 		}
 		head = head->next;
@@ -91,16 +92,14 @@ int	syntax_error(t_tool *data)
 	t_lexer	*head;
 
 	head = data->lexer_list;
-	// skip whitespace
 	if (head->tokens == WHITESPACE)
 		head = head->next;
-	// check quotes
+	if (!head)
+		return (0);
 	if (check_quotes(head))
 		return (1);
-	// if the first node is pipe
 	if (head->tokens == PIPE)
 		return (1);
-	// Check other items
 	while (head)
 	{
 		if (unexpected_token(head))
