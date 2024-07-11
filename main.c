@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 21:58:05 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/11 00:41:24 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/11 02:28:00 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,3 +29,4 @@ int	main(int ac, char **av, char **env)
 
 //norm lexer
 //syntax
+// sp f lpdaya
