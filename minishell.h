@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 21:11:39 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/11 18:45:41 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/12 16:14:09 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ void					add_node(t_lexer **head, t_tokens type, char *str);
 /////////////////////syntax_error///////////////////
 int						check_quotes(t_lexer *head);
 int						syntax_error(t_tool *data);
+int						ambiguous(t_command *command);
 /////////////////////parser///////////////////////////
 char					*remove_quotes(char *arg);
 t_command				*parser(t_lexer *data);
@@ -114,7 +115,7 @@ void					ft_lstadd_back_command(t_command **lst, t_command *new);
 void					display_token(t_file *file);
 void					ft_lstadd_back_file(t_file **lst, t_file *new);
 char					*get_token(t_tokens token);
-void					display_token_command(t_command *command, t_file *file);
+void					display_token_command(t_command *command);
 void					add_node_file(t_file **head, char *file_name,
 							t_tokens type);
 //////////////////////////////expand//////////////////////

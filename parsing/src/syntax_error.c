@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 15:21:27 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/11 18:50:07 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/12 18:42:07 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,24 @@ int	unexpected_token(t_lexer *head)
 		if (after_pipe(&head))
 			return (1);
 	}
-	return (0);
+	return(0);
+}
+int ambiguous(t_command *command)
+{
+	t_command *tmp = command;
+    while (tmp)
+	{
+		while (tmp->file)
+		{
+			if(!ft_strcmp(tmp->file->file_name,""))
+				return(1);
+			tmp->file = tmp->file->next;
+		}
+		tmp = tmp->next;
+	}
+	return(0);
 }
 
-// ls > $USERL
 int	syntax_error(t_tool *data)
 {
 	t_lexer	*head;

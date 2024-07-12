@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:21:56 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/11 18:50:02 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/12 16:15:21 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,6 @@ t_command	*parser(t_lexer *data)
 		if (head && head->tokens == PIPE)
 			head = head->next;
 	}
-	display_token_command(command_list, file);
+	// display_token_command(command_list);
 	return (command_list);
 }

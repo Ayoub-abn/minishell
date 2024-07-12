@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 23:55:12 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/11 18:49:39 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/12 16:09:00 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,8 @@ void	display_token_lexer(t_lexer *lexer)
 		lexer = lexer->next;
 	}
 }
-void display_token_command(t_command *command,  t_file *file )
+void display_token_command(t_command *command)
 {
-    (void) file;
     int node = 1;
     
         while (command)
@@ -54,7 +53,6 @@ void display_token_command(t_command *command,  t_file *file )
                 while (command->cmd[i])
                 {
                     printf("\tcontent[%d]: %s\n", i + 1, command->cmd[i]);
-            	    // file = file->next;
                     i++;
              
                 }

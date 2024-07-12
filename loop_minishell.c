@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 22:06:45 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/11 00:06:12 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/12 17:36:22 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,15 @@ void	loop_minishell(t_tool *data, t_env *env)
 			expand(data->lexer_list, env);
 			// display_token_lexer(data->lexer_list);
 			command_list = parser(data->lexer_list);
+			// display_token_command(command_list);
+			if(ambiguous(command_list))
+			{
+				printf("syntax error1\n");
+				continue ;
+			}
+			display_token_command(command_list);
+			
+			
 			free(data->cmd);
 		}
 		else if (!data->cmd)
