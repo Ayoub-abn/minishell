@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:21:56 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/12 16:15:21 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/13 10:26:41 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,10 @@ char	*remove_quotes(char *arg)
 		{
 			quote_char = arg[i];
 			if (check_quotes_to_remove(i, arg))
+			{
+				printf("dddd\n");
 				return (arg);
+			}
 			i++;
 			while (arg[i] && arg[i] != quote_char)
 				str[j++] = arg[i++];
