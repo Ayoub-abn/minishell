@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 21:11:39 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/12 21:20:28 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/13 14:57:46 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef struct s_file
 {
 	char				*file_name;
 	t_tokens			file_type;
+	bool				quotes;
 	struct s_file		*next;
 }						t_file;
 
@@ -109,7 +110,8 @@ void					add_node_command(t_command **head, t_file **file_head,
 void					xavi(t_lexer **head, char **command, t_file **file);
 void					handel_token(t_lexer **head, t_file **file,
 							t_tokens type);
-t_file					*ft_file_new(char *file_name, t_tokens type);
+// t_file					*ft_file_new(char *file_name, t_tokens type);
+t_file	*ft_file_new(char *file_name, t_tokens type, int q);
 t_command				*ft_command_new(char *command, t_file *file);
 void					ft_lstadd_back_command(t_command **lst, t_command *new);
 void					display_token(t_file *file);

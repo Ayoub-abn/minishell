@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 22:19:58 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/13 10:29:42 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/13 14:57:11 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_lexer	*ft_lexer_new(char *str, t_tokens type)
 	return (new_node);
 }
 
-t_file	*ft_file_new(char *file_name, t_tokens type)
+t_file	*ft_file_new(char *file_name, t_tokens type, int q)
 {
 	t_file	*new_node;
 
@@ -32,6 +32,10 @@ t_file	*ft_file_new(char *file_name, t_tokens type)
 	gc_push(new_node);
 	new_node->file_name = file_name;
 	new_node->file_type = type;
+	if (q)
+		new_node->quotes = true;
+	else
+		new_node->quotes = false;
 	new_node->next = NULL;
 	return (new_node);
 }

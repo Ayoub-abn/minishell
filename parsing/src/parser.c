@@ -6,32 +6,32 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:21:56 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/13 10:26:41 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/13 11:01:03 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../minishell.h"
 
-int	check_quotes_to_remove(int i, char *arg)
-{
-	char	quote_char;
-	int		k;
+// int	check_quotes_to_remove(int i, char *arg)
+// {
+// 	char	quote_char;
+// 	int		k;
 
-	quote_char = arg[i];
-	k = i;
-	while (arg[k] != quote_char && arg[k])
-		k++;
-	if (!arg[k])
-		return (-1);
-	return (0);
-}
+// 	quote_char = arg[i];
+// 	k = i;
+// 	while (arg[k] != quote_char && arg[k])
+// 		k++;
+// 	if (!arg[k])
+// 		return (-1);
+// 	return (0);
+// }
 
 char	*remove_quotes(char *arg)
 {
 	char	quote_char;
 	char	*str;
 
-	int (i), (j);
+	int (i), (j), (k);
 	i = 0;
 	j = 0;
 	str = malloc(ft_strlen(arg) * (sizeof(char) + 1));
@@ -40,13 +40,12 @@ char	*remove_quotes(char *arg)
 	{
 		if (arg[i] == '"' || arg[i] == '\'')
 		{
-			quote_char = arg[i];
-			if (check_quotes_to_remove(i, arg))
-			{
-				printf("dddd\n");
+			quote_char = arg[i++];
+			k = i;
+			while (arg[k] != quote_char && arg[k])
+				k++;
+			if (!arg[k])
 				return (arg);
-			}
-			i++;
 			while (arg[i] && arg[i] != quote_char)
 				str[j++] = arg[i++];
 			if (arg[i])

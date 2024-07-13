@@ -1,0 +1,10 @@
+gc
+la -la
+libft
+loop_minishell.c
+main.c
+Makefile
+minishell
+minishell.h
+parsing
+run.sh
