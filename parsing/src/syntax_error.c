@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 15:21:27 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/15 16:06:07 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/15 17:30:05 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int ambiguous(t_command *command)
 				return(1);
 			while (tmp_file->file_name[i])
 			{
-				if(tmp_file->file_name[i] == ' ' && tmp_file->file_name[i + 1] && tmp_file->quotes == false)
+				if((tmp_file->file_name[i] == ' ' || tmp_file->file_name[i] == '\t')   && tmp_file->file_name[i + 1] && tmp_file->quotes == false)
 					return(1);
 				i++;
 			}

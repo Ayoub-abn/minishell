@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 22:06:45 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/14 23:00:35 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/15 17:23:59 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	loop_minishell(t_tool *data, t_env *env)
 			command_list = parser(data->lexer_list);
 			if(ambiguous(command_list))
 			{
-				printf("syntax error\n");
+				printf("ambiguous redirect\n");
 				continue ;
 			}
 			display_token_command(command_list);
