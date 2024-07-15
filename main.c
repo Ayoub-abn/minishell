@@ -6,13 +6,12 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 21:58:05 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/13 14:36:28 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/14 22:32:34 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-//norm lexer
-//syntax
+
 int	main(int ac, char **av, char **env)
 {
 	t_tool	tools;

@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 15:21:27 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/13 15:04:36 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/15 16:06:07 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,38 +85,23 @@ int	unexpected_token(t_lexer *head)
 	}
 	return(0);
 }
-// int ambiguous(t_command *command)
-// {
-// 	t_command *tmp = command;
-//     while (tmp)
-// 	{
-// 		while (tmp->file)
-// 		{
-// 			if(!ft_strcmp(tmp->file->file_name,""))
-// 				return(1);
-// 			(*tmp).file = tmp->file->next;
-// 		}
-// 		tmp = tmp->next;
-// 	}
-// 	return(0);
-// }
 
 int ambiguous(t_command *command)
 {
 	t_command *tmp = command;
 	t_file	*tmp_file;
-	int i = 0;
+	int i ;
     while (tmp)
 	{
 		tmp_file = tmp->file;
-		i = 0;
 		while (tmp_file)
 		{
+			i = 0;
 			if(ft_strcmp(tmp_file->file_name,"") == 0)
 				return(1);
 			while (tmp_file->file_name[i])
 			{
-				if(tmp_file->file_name[i] == ' ' && tmp_file->quotes == false)
+				if(tmp_file->file_name[i] == ' ' && tmp_file->file_name[i + 1] && tmp_file->quotes == false)
 					return(1);
 				i++;
 			}

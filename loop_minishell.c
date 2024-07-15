@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 22:06:45 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/13 12:22:24 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/14 23:00:35 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,20 @@ void nongnu(int i)
         rl_redisplay();
     }
 }
+int check_heredoc(char *cmd)
+{
+	int i = 0;
+	while (cmd[i])
+	{
+		if(cmd[i] == '<' && cmd[i + 1] == '<')
+			return(1);
+		// if(!cmd[i + 1])
+		// 	break;
+		i++;
+	}
+	return(0);
+	
+}
 void	loop_minishell(t_tool *data, t_env *env)
 {
 	t_command	*command_list;
@@ -32,7 +46,8 @@ void	loop_minishell(t_tool *data, t_env *env)
 		data->cmd = readline("minishell$ ");
 		if (ft_strlen(data->cmd) > 0)
 		{
-			add_history(data->cmd);
+			// if(!check_heredoc(data->cmd))
+				add_history(data->cmd);
 			lexer(data);
 			if (syntax_error(data))
 			{

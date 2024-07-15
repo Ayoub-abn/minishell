@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 23:55:12 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/13 14:43:03 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/13 20:37:41 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void display_token_command(t_command *command)
             }
             while (command->file)
             {
-                printf("\tquotes : %d \n",command->file->quotes);
+                // printf("\tquotes : %d \n",command->file->quotes);
                 printf("\tfile name: %s \tfile type: %s\n", command->file->file_name,get_token(command->file->file_type));   
                 command->file = command->file->next;
             }
