@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 22:19:58 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/13 14:57:11 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/18 20:29:11 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_command	*ft_command_new(char *command, t_file *file)
 	i = 0;
 	while (command_arg[i])
 	{
-		new_node->cmd[i] = remove_quotes(command_arg[i]);
+		new_node->cmd[i] =command_arg[i];
 		i++;
 	}
 	new_node->cmd[i] = NULL;

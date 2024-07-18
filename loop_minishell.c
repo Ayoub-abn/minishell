@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 22:06:45 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/15 17:23:59 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/18 20:39:19 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,32 @@ int check_heredoc(char *cmd)
 	return(0);
 	
 }
+void hayed_3liya(t_command **command)
+{
+    t_command *tmp = (*command);
+	t_file	*tmp_file;
+	while (tmp)
+	{
+
+		if (tmp->cmd)
+		{
+			int i = 0;
+			while (tmp->cmd[i])
+			{
+				tmp->cmd[i] = remove_quotes(tmp->cmd[i]);
+				i++;
+			}
+		}
+		tmp_file = tmp->file;
+		while (tmp_file)
+		{
+			tmp_file->file_name = remove_quotes(tmp_file->file_name);
+			tmp_file = tmp_file->next;
+		}
+		tmp = tmp->next;
+	}
+
+}
 void	loop_minishell(t_tool *data, t_env *env)
 {
 	t_command	*command_list;
@@ -62,6 +88,7 @@ void	loop_minishell(t_tool *data, t_env *env)
 				printf("ambiguous redirect\n");
 				continue ;
 			}
+			hayed_3liya(&command_list);
 			display_token_command(command_list);
 			free(data->cmd);
 		}

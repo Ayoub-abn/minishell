@@ -6,7 +6,7 @@
 /*   By: aabdenou <aabdenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 13:11:23 by aabdenou          #+#    #+#             */
-/*   Updated: 2024/07/13 15:19:35 by aabdenou         ###   ########.fr       */
+/*   Updated: 2024/07/18 20:28:14 by aabdenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	handle_redirection(t_lexer **head, t_file **file, int token_type)
 {
 	char	*file_name;
 	t_file	*node;
-	char	*rm_quotes;
+	// char	*rm_quotes;
 	// char	quotes;
 	int q = 0;
 
@@ -44,8 +44,8 @@ void	handle_redirection(t_lexer **head, t_file **file, int token_type)
 	}
 	if((file_name[0] == '\'' || file_name[0] == '\"') && (file_name[ft_strlen(file_name) - 1] == file_name[0]))
 		q = 1;
-	rm_quotes = remove_quotes(file_name);
-	node = ft_file_new(rm_quotes, token_type,q);
+	// rm_quotes = remove_quotes(file_name);
+	node = ft_file_new(file_name, token_type,q);
 	ft_lstadd_back_file(file, node);
 }
 
